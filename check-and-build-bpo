@@ -1,0 +1,91 @@
+#!/bin/sh
+
+set -e
+
+if ! [ -r /etc/pkgos/pkgos.conf ] ; then
+   echo "Could not read /etc/pkgos/pkgos.conf"
+   exit 1
+else
+   . /etc/pkgos/pkgos.conf
+fi
+
+HERE=$(pwd)
+
+cleanup_data () {
+    rm -rf ${HERE}/etc
+    rm -f ${HERE}/rebuild-list-sid ${HERE}/rebuild-list-experimental
+    rm -rf bpo-src uploads
+}
+
+# param: $1 = name of mirror
+#        $2 = repo URL
+make_fake_mirror () {
+   NAME_OF_MIRROR=${1}
+   FETCH_REPO_URL=${2}
+   # Create the folder and remove the Packages.gz / Sources.gz
+   DEST_DIST_DIR=${HERE}/etc/pkgos/fake-${NAME_OF_MIRROR}-mirror/dists/${NAME_OF_MIRROR}/main
+   for i in binary-all binary-amd64 source ; do
+      if ! [ -d ${DEST_DIST_DIR}/$i ] ; then
+         mkdir -p ${DEST_DIST_DIR}/$i
+      fi
+      if [ "$i" = "source" ] ; then
+         GZFILE=Sources.gz
+      else
+         GZFILE=Packages.gz
+      fi
+      rm -f ${DEST_DIST_DIR}/$i/$GZFILE
+      wget ${FETCH_REPO_URL}/dists/${NAME_OF_MIRROR}/main/$i/$GZFILE -O ${DEST_DIST_DIR}/$i/$GZFILE || true
+   done
+}
+
+# param: $1 = sid or experimental
+decide_to_build_or_not () {
+    SID_OR_EXP=${1}
+    for PKG_SOURCE in `cat ${SID_OR_EXP}-list | grep -E -v '^#'` ; do
+        echo "===> Checking status of ${PKG_SOURCE}:"
+        SID_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-${SID_OR_EXP}-mirror ${PKG_SOURCE} | awk '{print $3}' | tail -n 1)
+        echo "Sid version: ${SID_VERSION}"
+        OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-mirror ${PKG_SOURCE} | awk '{print $3}' | tail -n 1)
+        if [ -z "${OUR_VERSION}" ] ; then
+            echo "Our version: missing package"
+            echo "Decision: rebuild"
+            echo ${PKG_SOURCE} >>rebuild-list-${SID_OR_EXP}
+        else
+            echo "Our version: ${OUR_VERSION}"
+            # Strip the added version number from our version"
+            STRIPPED_BPO_VERS=$(echo ${OUR_VERSION} | sed 's#\+[0-9]*~bpo8+1##')
+            STRIPPED_BPO_VERS=$(echo ${STRIPPED_BPO_VERS} | sed 's#~bpo8+1##')
+            echo "Stripped version: ${STRIPPED_BPO_VERS}"
+            # Check if we have lower version
+            if dpkg --compare-versions ${STRIPPED_BPO_VERS} lt ${SID_VERSION} ; then
+                echo "Decision: rebuild"
+                echo ${PKG_SOURCE} >>rebuild-list-${SID_OR_EXP}
+            else
+                echo "Decision: skip"
+            fi
+        fi
+    done
+}
+
+# param: $1 = sid or experimental
+rebuild_all_bpo () {
+    SID_OR_EXP=${1}
+    for PKG_SOURCE in `cat rebuild-list-${SID_OR_EXP}` ; do
+        echo "################################"
+        echo "################################"
+        echo "################################"
+        echo "### REBUILDING ${PKG_SOURCE} ###"
+        echo "################################"
+        echo "################################"
+        echo "################################"
+        ./bb ${PKG_SOURCE}
+    done
+}
+
+cleanup_data
+make_fake_mirror jessie-newton http://mirror.dfw.rax.openstack.org/debian-openstack
+for DEBIAN_SUITE_TO_BUILD in sid ; do
+    make_fake_mirror $DEBIAN_SUITE_TO_BUILD ${CLOSEST_DEBIAN_MIRROR}
+    decide_to_build_or_not $DEBIAN_SUITE_TO_BUILD
+    rebuild_all_bpo $DEBIAN_SUITE_TO_BUILD
+done
