@@ -17,6 +17,15 @@ cleanup_data () {
     rm -rf bpo-src uploads
 }
 
+make_ssh_keys () {
+    # Create ssh key
+    if ! [ -e ~/.ssh/id_rsa ] ; then
+        ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+    fi
+    cat ~/.ssh/id_rsa.pub >>~/.ssh/authorized_keys
+    cat ~/.ssh/id_rsa.pub >>~/.ssh/authorized_keys2
+}
+
 # param: $1 = name of mirror
 #        $2 = repo URL
 make_fake_mirror () {
@@ -78,11 +87,13 @@ rebuild_all_bpo () {
         echo "################################"
         echo "################################"
         echo "################################"
-        ./bb ${PKG_SOURCE}
+        ssh -o "StrictHostKeyChecking no" localhost "cd ${WORKSPACE} ; ./bb ${PKG_SOURCE}"
     done
 }
 
+
 cleanup_data
+make_ssh_keys
 make_fake_mirror jessie-newton http://mirror.dfw.rax.openstack.org/debian-openstack
 for DEBIAN_SUITE_TO_BUILD in sid ; do
     make_fake_mirror $DEBIAN_SUITE_TO_BUILD ${CLOSEST_DEBIAN_MIRROR}
