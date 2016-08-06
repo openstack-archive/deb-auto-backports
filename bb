@@ -60,7 +60,7 @@ mkdir -p ${BUILD_ROOT}/$PKG_NAME
 cd ${BUILD_ROOT}/$PKG_NAME
 
 # Download the .dsc and extract it
-DSC_URL=$(echo ${DSC_URL} | sed "s#http://http.debian.net/debian#${CLOSEST_DEBIAN_MIRROR}#")
+#DSC_URL=$(echo ${DSC_URL} | sed "s#http://http.debian.net/debian#${CLOSEST_DEBIAN_MIRROR}#")
 dget -d -u ${DSC_URL}
 PKG_SRC_NAME=`ls *.dsc | cut -d_ -f1`
 PKG_NAME_FIRST_CHAR=`echo ${PKG_SRC_NAME} | awk '{print substr($0,1,1)}'`
@@ -85,7 +85,9 @@ rm -f debian/changelog.dch
 dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distribution ${TARGET_DISTRO}-backports -m  "Rebuilt for ${TARGET_DISTRO}."
 
 # Build the package
-sbuild
+CURDIR=$(pwd)
+ssh -o "StrictHostKeyChecking no" localhost "cd ${CURDIR} ; sbuild"
+#sbuild
 
 # Copy in the FTP repo
 cd ..
