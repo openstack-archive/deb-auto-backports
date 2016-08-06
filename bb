@@ -85,7 +85,9 @@ rm -f debian/changelog.dch
 dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distribution ${TARGET_DISTRO}-backports -m  "Rebuilt for ${TARGET_DISTRO}."
 
 # Build the package
-sbuild
+CURDIR=$(pwd)
+ssh -o "StrictHostKeyChecking no" localhost "cd ${CURDIR} ; sbuild"
+#sbuild
 
 # Copy in the FTP repo
 cd ..
