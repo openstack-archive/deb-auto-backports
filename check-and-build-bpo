@@ -10,6 +10,7 @@ else
 fi
 
 HERE=$(pwd)
+LAST_GIT_COMMIT=$(git log | head -n 1 | awk '{print $2}')
 
 cleanup_data () {
     rm -rf ${HERE}/etc
@@ -101,3 +102,9 @@ for DEBIAN_SUITE_TO_BUILD in sid ; do
     decide_to_build_or_not $DEBIAN_SUITE_TO_BUILD
     rebuild_all_bpo $DEBIAN_SUITE_TO_BUILD
 done
+
+TARGET_FTP_FOLDER=${HERE}/uploads/${LAST_GIT_COMMIT}
+echo "############################"
+echo "### Done! List of files: ###"
+echo "############################"
+ls -lah ${TARGET_FTP_FOLDER}
