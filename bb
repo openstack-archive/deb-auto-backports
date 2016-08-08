@@ -39,6 +39,7 @@ PKG_NAME=${1}
 HERE=$(pwd)
 BUILD_ROOT=$(pwd)/bpo-src
 
+LAST_GIT_COMMIT=$(git log | head -n 1 | awk '{print $2}')
 
 # Get info from packages.debian.org
 PKG_INFO_FILE=`mktemp -t pkg_info_file.XXXXXX`
@@ -95,7 +96,7 @@ ls -lah ..
 # Copy in the FTP repo
 cd ..
 rm *.build
-TARGET_FTP_FOLDER=${HERE}/uploads
+TARGET_FTP_FOLDER=${HERE}/uploads/${LAST_GIT_COMMIT}
 mkdir -p ${TARGET_FTP_FOLDER}
 cp *bpo* ${TARGET_FTP_FOLDER}
 # We need || true in the case of a native package
