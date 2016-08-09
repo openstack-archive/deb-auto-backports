@@ -84,7 +84,7 @@ python-setuptools
 #python-virtualenv
 #python-webob
 #requests
-#routes
+routes
 #setuptools-scm
 #six
 #sphinx
