@@ -87,7 +87,7 @@ dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distri
 
 # Build the package
 CURDIR=$(pwd)
-ssh -o "StrictHostKeyChecking no" localhost "cd ${CURDIR} ; sbuild"
+ssh -o "StrictHostKeyChecking no" localhost "cd ${CURDIR} ; sbuild --force-orig-source"
 #sbuild
 
 # Check the output files with ls
