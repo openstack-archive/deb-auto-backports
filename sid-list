@@ -46,7 +46,7 @@ jquery
 #python-gssapi
 #python-hypothesis
 #python-idna
-#python-imagesize
+python-imagesize
 #python-ipaddress
 #python-iso8601
 #python-keyring

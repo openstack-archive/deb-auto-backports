@@ -9,6 +9,15 @@ else
    . /etc/pkgos/pkgos.conf
 fi
 
+if ! [ -r /etc/nodepool/provider ] ; then
+    echo "Could not read /etc/nodepool/provider"
+    exit 1
+else
+    . /etc/nodepool/provider
+    NODEPOOL_MIRROR_HOST=${NODEPOOL_MIRROR_HOST:-mirror.$NODEPOOL_REGION.$NODEPOOL_CLOUD.openstack.org}
+    NODEPOOL_MIRROR_HOST=$(echo $NODEPOOL_MIRROR_HOST|tr '[:upper:]' '[:lower:]')
+fi
+
 HERE=$(pwd)
 LAST_GIT_COMMIT=$(git log | head -n 1 | awk '{print $2}')
 
@@ -16,6 +25,14 @@ cleanup_data () {
     rm -rf ${HERE}/etc
     rm -f ${HERE}/rebuild-list-sid ${HERE}/rebuild-list-experimental
     rm -rf bpo-src uploads
+}
+
+add_bpo_repo_to_sbuild () {
+    echo "deb http://${NODEPOOL_MIRROR_HOST}/debian-openstack jessie-newton-backports main
+deb-src http://${NODEPOOL_MIRROR_HOST}/debian-openstack jessie-newton-backports main
+" >/tmp/jessie-newton-backports.list
+    sudo cp /tmp/jessie-newton-backports.list /var/lib/sbuild/jessie-newton/etc/apt/sources.list.d/jessie-newton-backports.list
+    sudo sbuild-update -udcar jessie-newton-amd64-sbuild
 }
 
 make_ssh_keys () {
@@ -55,7 +72,7 @@ decide_to_build_or_not () {
         echo "===> Checking status of ${PKG_SOURCE}:"
         SID_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-${SID_OR_EXP}-mirror ${PKG_SOURCE} | awk '{print $3}' | tail -n 1)
         echo "Sid version: ${SID_VERSION}"
-        OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-mirror ${PKG_SOURCE} | awk '{print $3}' | tail -n 1)
+        OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-backports-mirror ${PKG_SOURCE} | awk '{print $3}' | tail -n 1)
         if [ -z "${OUR_VERSION}" ] ; then
             echo "Our version: missing package"
             echo "Decision: rebuild"
@@ -95,10 +112,11 @@ rebuild_all_bpo () {
 
 
 cleanup_data
+add_bpo_repo_to_sbuild
 make_ssh_keys
-make_fake_mirror jessie-newton http://mirror.dfw.rax.openstack.org/debian-openstack
+make_fake_mirror jessie-newton-backports http://${NODEPOOL_MIRROR_HOST}/debian-openstack
 for DEBIAN_SUITE_TO_BUILD in sid ; do
-    make_fake_mirror $DEBIAN_SUITE_TO_BUILD ${CLOSEST_DEBIAN_MIRROR}
+    make_fake_mirror $DEBIAN_SUITE_TO_BUILD http://httpredir.debian.org/debian
     decide_to_build_or_not $DEBIAN_SUITE_TO_BUILD
     rebuild_all_bpo $DEBIAN_SUITE_TO_BUILD
 done
