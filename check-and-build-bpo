@@ -9,6 +9,15 @@ else
    . /etc/pkgos/pkgos.conf
 fi
 
+if ! [ -r /etc/nodepool/provider ] ; then
+    echo "Could not read /etc/nodepool/provider"
+    exit 1
+else
+    . /etc/nodepool/provider
+    NODEPOOL_MIRROR_HOST=${NODEPOOL_MIRROR_HOST:-mirror.$NODEPOOL_REGION.$NODEPOOL_CLOUD.openstack.org}
+    NODEPOOL_MIRROR_HOST=$(echo $NODEPOOL_MIRROR_HOST|tr '[:upper:]' '[:lower:]')
+fi
+
 HERE=$(pwd)
 LAST_GIT_COMMIT=$(git log | head -n 1 | awk '{print $2}')
 
@@ -16,6 +25,14 @@ cleanup_data () {
     rm -rf ${HERE}/etc
     rm -f ${HERE}/rebuild-list-sid ${HERE}/rebuild-list-experimental
     rm -rf bpo-src uploads
+}
+
+add_bpo_repo_to_sbuild () {
+    echo "deb http://${NODEPOOL_MIRROR_HOST}/debian jessie-newton-backports main
+deb-src http://${NODEPOOL_MIRROR_HOST}/debian jessie-newton-backports main
+" >/tmp/jessie-newton-backports.list
+    sudo cp /tmp/jessie-newton-backports.list /var/lib/sbuild/jessie-newton/etc/apt/sources.list.d/jessie-newton-backports.list
+    sudo sbuild-update -udcar jessie-newton-amd64-sbuild
 }
 
 make_ssh_keys () {
@@ -95,6 +112,7 @@ rebuild_all_bpo () {
 
 
 cleanup_data
+add_bpo_repo_to_sbuild
 make_ssh_keys
 make_fake_mirror jessie-newton http://mirror.dfw.rax.openstack.org/debian-openstack
 for DEBIAN_SUITE_TO_BUILD in sid ; do
