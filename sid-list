@@ -48,7 +48,7 @@ python-eventlet
 #python-idna
 python-imagesize
 #python-ipaddress
-#python-iso8601
+python-iso8601
 #python-keyring
 #python-ldap3
 #python-lockfile
