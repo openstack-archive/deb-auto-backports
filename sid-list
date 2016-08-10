@@ -99,5 +99,4 @@ suds
 #unittest2
 #voluptuous
 #webkit2gtk
-#zzzeeksphinx
-
+zzzeeksphinx
