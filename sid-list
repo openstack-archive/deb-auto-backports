@@ -78,7 +78,7 @@ python-smmap
 python-subprocess32
 #python-txaio
 #python-tzlocal
-#python-unicodecsv
+python-unicodecsv
 #python-uritemplate
 python-urllib3
 #python-virtualenv
