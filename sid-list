@@ -97,6 +97,6 @@ suds
 turbogears2
 twisted
 #unittest2
-#voluptuous
+voluptuous
 #webkit2gtk
 zzzeeksphinx
