@@ -82,7 +82,7 @@ python-setuptools
 #python-uritemplate
 #python-urllib3
 #python-virtualenv
-#python-webob
+python-webob
 #requests
 #routes
 #setuptools-scm
