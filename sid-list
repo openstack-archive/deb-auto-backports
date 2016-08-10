@@ -75,7 +75,7 @@ python-imagesize
 python-setuptools
 #python-smmap
 #python-snappy
-#python-subprocess32
+python-subprocess32
 #python-txaio
 #python-tzlocal
 #python-unicodecsv
