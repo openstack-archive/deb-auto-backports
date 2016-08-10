@@ -23,7 +23,7 @@ pygments
 #pyinotify
 #pymongo
 #pytest
-#python-amqp
+python-amqp
 #python-babel
 #python-cachecontrol
 #python-cachetools
