@@ -98,5 +98,5 @@ suds
 #twisted
 #unittest2
 #voluptuous
-#webkit2gtk
+webkit2gtk
 zzzeeksphinx
