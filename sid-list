@@ -32,7 +32,7 @@ pygments
 #python-cffi
 #python-crank
 #python-cryptography
-#python-cryptography-vectors
+python-cryptography-vectors
 #python-dateutil
 #python-django
 #python-docker
