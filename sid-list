@@ -47,9 +47,9 @@ jquery
 #python-hypothesis
 #python-idna
 python-imagesize
-#python-ipaddress
-#python-iso8601
-#python-keyring
+python-ipaddress
+python-iso8601
+python-keyring
 #python-ldap3
 #python-lockfile
 #python-lz4
