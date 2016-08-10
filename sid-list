@@ -6,7 +6,7 @@ alabaster
 #dirtbike
 #django-nose
 #django-sekizai
-#dnspython
+dnspython
 #faker
 #gunicorn
 #jinja2
