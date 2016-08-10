@@ -13,7 +13,7 @@ jinja2
 jquery
 kazoo
 #kombu
-#lz4
+lz4
 #nodeenv
 nose
 #pandas
