@@ -60,7 +60,7 @@ python-mysqldb
 #python-packaging
 python-pathlib
 #python-pika
-#python-pip
+python-pip
 #python-progress
 #python-py
 #python-pygraphviz
