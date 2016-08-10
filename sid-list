@@ -73,7 +73,7 @@ python-mysqldb
 #python-requests-kerberos
 #python-selenium
 python-setuptools
-#python-smmap
+python-smmap
 #python-snappy
 python-subprocess32
 #python-txaio
