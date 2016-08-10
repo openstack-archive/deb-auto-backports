@@ -38,7 +38,7 @@ jquery
 #python-docker
 #python-dogpile.cache
 #python-elasticsearch
-#python-eventlet
+python-eventlet
 #python-future
 #python-git
 #python-gitdb
