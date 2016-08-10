@@ -80,7 +80,7 @@ python-setuptools
 #python-tzlocal
 #python-unicodecsv
 #python-uritemplate
-#python-urllib3
+python-urllib3
 #python-virtualenv
 #python-webob
 #requests
