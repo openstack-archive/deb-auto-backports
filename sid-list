@@ -1,7 +1,7 @@
 alabaster
 #antlr3
 #apscheduler
-#betamax
+betamax
 #contextlib2
 #dirtbike
 #django-nose
