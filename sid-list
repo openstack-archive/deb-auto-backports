@@ -59,7 +59,7 @@ python-imagesize
 #python-networkx
 #python-packaging
 #python-pathlib
-#python-pika
+python-pika
 #python-pip
 #python-progress
 #python-py
