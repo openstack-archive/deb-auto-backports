@@ -1,6 +1,7 @@
 #!/bin/sh
 
 set -e
+set -x
 
 if ! [ -r /etc/pkgos/pkgos.conf ] ; then
    echo "Could not read /etc/pkgos/pkgos.conf"
@@ -31,8 +32,8 @@ add_bpo_repo_to_sbuild () {
     echo "deb http://${NODEPOOL_MIRROR_HOST}/debian-openstack jessie-newton-backports main
 deb-src http://${NODEPOOL_MIRROR_HOST}/debian-openstack jessie-newton-backports main
 " >/tmp/jessie-newton-backports.list
-    sudo cp /tmp/jessie-newton-backports.list /var/lib/sbuild/jessie-newton/etc/apt/sources.list.d/jessie-newton-backports.list
-    sudo sbuild-update -udcar jessie-newton-amd64-sbuild
+    sudo cp /tmp/jessie-newton-backports.list /var/lib/sbuild/jessie-newton-backports/etc/apt/sources.list.d/jessie-newton-backports.list
+    sudo sbuild-update -udcar jessie-newton-backports-amd64-sbuild
 }
 
 make_ssh_keys () {
