@@ -33,7 +33,7 @@ pyinotify
 #python-crank
 #python-cryptography
 python-cryptography-vectors
-#python-dateutil
+python-dateutil
 #python-django
 #python-docker
 python-dogpile.cache
