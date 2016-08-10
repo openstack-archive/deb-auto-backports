@@ -21,7 +21,7 @@ nose
 #pyasn1
 pygments
 pyinotify
-#pymongo
+pymongo
 #pytest
 #python-amqp
 #python-babel
