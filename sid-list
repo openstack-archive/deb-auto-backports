@@ -15,7 +15,7 @@ jquery
 #kombu
 #lz4
 #nodeenv
-#nose
+nose
 #pandas
 #pep8
 #pyasn1
