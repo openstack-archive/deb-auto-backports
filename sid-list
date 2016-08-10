@@ -58,7 +58,7 @@ python-mysqldb
 #python-nacl
 #python-networkx
 #python-packaging
-#python-pathlib
+python-pathlib
 #python-pika
 #python-pip
 #python-progress
