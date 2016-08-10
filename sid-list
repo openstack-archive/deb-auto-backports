@@ -92,7 +92,7 @@ six
 #sphinx-bootstrap-theme
 #sphinx-testing
 sqlalchemy
-#stringtemplate4
+stringtemplate4
 suds
 turbogears2
 #twisted
