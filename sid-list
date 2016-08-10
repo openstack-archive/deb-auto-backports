@@ -39,7 +39,7 @@ jquery
 #python-dogpile.cache
 #python-elasticsearch
 #python-eventlet
-#python-future
+python-future
 #python-git
 #python-gitdb
 #python-googleapi
