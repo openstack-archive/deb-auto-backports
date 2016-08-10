@@ -19,7 +19,7 @@ jquery
 #pandas
 #pep8
 #pyasn1
-#pygments
+pygments
 #pyinotify
 #pymongo
 #pytest
