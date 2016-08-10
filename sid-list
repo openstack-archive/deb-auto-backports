@@ -83,7 +83,7 @@ python-subprocess32
 python-urllib3
 #python-virtualenv
 #python-webob
-#requests
+requests
 #routes
 #setuptools-scm
 six
