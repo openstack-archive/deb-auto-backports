@@ -83,11 +83,21 @@ fi
 dpkg-source -x *.dsc
 cd ${SOURCE_NAME}-${UPSTREAM_VERSION}
 rm -f debian/changelog.dch
+CURDIR=$(pwd)
+BUILDCURDIR=$CURDIR
+if [ "X$(cat debian/source/format)" = "X3.0 (native)" ] ; then
+    PACKAGE_IS_NATIVE="yes"
+else
+    PACKAGE_IS_NATIVE="no"
+fi
 dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distribution ${TARGET_DISTRO}-backports -m  "Rebuilt for ${TARGET_DISTRO}."
 
-# Build the package
-CURDIR=$(pwd)
-ssh -o "StrictHostKeyChecking no" localhost "cd ${CURDIR} ; sbuild --force-orig-source"
+if [ ${PACKAGE_IS_NATIVE} = "yes" ] ; then
+    cd ../*bpo8+1
+    BUILDCURDIR=$(pwd)
+fi
+
+ssh -o "StrictHostKeyChecking no" localhost "cd ${BUILDCURDIR} ; sbuild --force-orig-source"
 #sbuild
 
 # Check the output files with ls
@@ -98,6 +108,10 @@ cd ..
 rm *.build
 TARGET_FTP_FOLDER=${HERE}/uploads/${LAST_GIT_COMMIT}
 mkdir -p ${TARGET_FTP_FOLDER}
-cp *bpo* ${TARGET_FTP_FOLDER}
+if grep -q native debian/source/format ; then
+    cp *~bpo8+1.dsc *~bpo8+1.tar* *~bpo8+1*.deb *~bpo8+1*.changes ${TARGET_FTP_FOLDER}
+else
+    cp *bpo* ${TARGET_FTP_FOLDER}
+fi
 # We need || true in the case of a native package
 cp *.orig.tar.* ${TARGET_FTP_FOLDER} || true
