@@ -54,7 +54,7 @@ python-imagesize
 #python-lockfile
 #python-lz4
 #python-microversion-parse
-#python-mysqldb
+python-mysqldb
 #python-nacl
 #python-networkx
 #python-packaging
