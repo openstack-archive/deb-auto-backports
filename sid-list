@@ -91,7 +91,7 @@ python-setuptools
 #sphinx-argparse
 #sphinx-bootstrap-theme
 #sphinx-testing
-#sqlalchemy
+sqlalchemy
 #stringtemplate4
 suds
 #turbogears2
