@@ -11,7 +11,7 @@ alabaster
 #gunicorn
 #jinja2
 jquery
-#kazoo
+kazoo
 #kombu
 #lz4
 #nodeenv
