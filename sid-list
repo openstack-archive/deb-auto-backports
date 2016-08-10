@@ -20,7 +20,7 @@ nose
 #pep8
 #pyasn1
 pygments
-#pyinotify
+pyinotify
 #pymongo
 #pytest
 #python-amqp
