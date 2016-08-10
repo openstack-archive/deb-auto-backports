@@ -87,7 +87,7 @@ python-setuptools
 #routes
 #setuptools-scm
 #six
-#sphinx
+sphinx
 #sphinx-argparse
 #sphinx-bootstrap-theme
 #sphinx-testing
