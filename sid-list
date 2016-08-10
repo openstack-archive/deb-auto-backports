@@ -24,7 +24,7 @@ jquery
 #pymongo
 #pytest
 #python-amqp
-#python-babel
+python-babel
 #python-cachecontrol
 #python-cachetools
 #python-cassandra-driver
