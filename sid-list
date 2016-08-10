@@ -94,7 +94,7 @@ python-urllib3
 sqlalchemy
 #stringtemplate4
 suds
-#turbogears2
+turbogears2
 #twisted
 #unittest2
 #voluptuous
