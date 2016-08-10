@@ -87,6 +87,10 @@ dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distri
 
 # Build the package
 CURDIR=$(pwd)
+
+echo "Test to understand the failure:"
+ls /home/jenkins/workspace/pkgdeb-build-auto-backports/bpo-src/dh-python
+
 ssh -o "StrictHostKeyChecking no" localhost "cd ${CURDIR} ; sbuild --force-orig-source"
 #sbuild
 
