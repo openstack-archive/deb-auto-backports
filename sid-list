@@ -29,7 +29,7 @@ jquery
 #python-cachetools
 #python-cassandra-driver
 #python-cbor
-#python-cffi
+python-cffi
 #python-crank
 #python-cryptography
 #python-cryptography-vectors
