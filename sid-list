@@ -12,7 +12,7 @@ dnspython
 jinja2
 jquery
 kazoo
-#kombu
+kombu
 #lz4
 #nodeenv
 nose
