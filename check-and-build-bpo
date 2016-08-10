@@ -31,6 +31,10 @@ add_bpo_repo_to_sbuild () {
     echo "deb http://${NODEPOOL_MIRROR_HOST}/debian-openstack jessie-newton-backports main
 deb-src http://${NODEPOOL_MIRROR_HOST}/debian-openstack jessie-newton-backports main
 " >/tmp/jessie-newton-backports.list
+    echo "==========> Testing to list with ls /var/lib/sbuild/jessie-newton"
+    sudo ls /var/lib/sbuild/
+    sudo ls /var/lib/sbuild/jessie-newton || true
+    sudo ls /var/lib/sbuild/jessie-newton/etc/apt/sources.list.d/jessie-newton-backports.list
     sudo cp /tmp/jessie-newton-backports.list /var/lib/sbuild/jessie-newton/etc/apt/sources.list.d/jessie-newton-backports.list
     sudo sbuild-update -udcar jessie-newton-amd64-sbuild
 }
