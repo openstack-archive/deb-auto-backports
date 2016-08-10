@@ -53,7 +53,7 @@ python-iso8601
 #python-ldap3
 #python-lockfile
 #python-lz4
-#python-microversion-parse
+python-microversion-parse
 python-mysqldb
 #python-nacl
 #python-networkx
