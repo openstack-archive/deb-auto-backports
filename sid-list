@@ -36,7 +36,7 @@ jquery
 #python-dateutil
 #python-django
 #python-docker
-#python-dogpile.cache
+python-dogpile.cache
 #python-elasticsearch
 python-eventlet
 #python-future
