@@ -95,7 +95,7 @@ sqlalchemy
 #stringtemplate4
 suds
 turbogears2
-#twisted
+twisted
 #unittest2
 #voluptuous
 #webkit2gtk
