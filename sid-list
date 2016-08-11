@@ -51,7 +51,7 @@ python-imagesize
 python-iso8601
 #python-keyring
 python-ldap3
-#python-lockfile
+python-lockfile
 #python-lz4
 python-mysqldb
 #python-nacl
