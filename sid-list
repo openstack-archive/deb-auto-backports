@@ -45,7 +45,7 @@ python-eventlet
 #python-googleapi
 #python-gssapi
 #python-hypothesis
-#python-idna
+python-idna
 python-imagesize
 #python-ipaddress
 python-iso8601
