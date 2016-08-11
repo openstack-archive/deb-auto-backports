@@ -8,7 +8,7 @@ dirtbike
 #django-sekizai
 dnspython
 #faker
-#gunicorn
+gunicorn
 jinja2
 jquery
 kazoo
