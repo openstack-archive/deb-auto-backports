@@ -27,7 +27,7 @@ python-amqp
 #python-babel
 #python-cachecontrol
 #python-cachetools
-#python-cassandra-driver
+python-cassandra-driver
 #python-cbor
 #python-cffi
 #python-crank
