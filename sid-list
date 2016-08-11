@@ -3,7 +3,7 @@ alabaster
 #apscheduler
 #betamax
 #contextlib2
-#dirtbike
+dirtbike
 #django-nose
 #django-sekizai
 dnspython
