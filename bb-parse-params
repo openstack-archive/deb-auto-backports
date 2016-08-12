@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# Manage parameters of this script
+usage () {
+    echo "Usage: $0 <source-package> [-d <DISTRO>]"
+    echo " -d <DISTRO>: Define from which distro to backport"
+    exit 1
+}
+
+bb_parse_params () {
+    PKG_NAME=${1}
+    shift
+    UPLOAD=no
+    SRC_DISTRO=sid
+    DOWNLOAD_FROM_JESSIE_BACKPORTS="no"
+    PARAM_ERROR="no"
+    for i in $@ ; do
+        case ${1} in
+        "-d")
+            if [ -z "${2}" ] || [ -z "${3}" ] ; then usage ; fi
+            SRC_DISTRO=${2}
+            shift
+            shift
+        ;;
+        "--download-from-jessie-backports")
+            DOWNLOAD_FROM_JESSIE_BACKPORTS="yes"
+            SRC_DISTRO=jessie-backports
+            shift
+        *)
+        ;;
+        esac
+    done
+    if [ -z "${PKG_NAME}" ] ; then
+        PARAM_ERROR="yes"
+    fi
+}
