@@ -3,12 +3,19 @@
 set -e
 set -x
 
+HERE=$(pwd)
+LAST_GIT_COMMIT=$(git log | head -n 1 | awk '{print $2}')
+
 if ! [ -r /etc/pkgos/pkgos.conf ] ; then
    echo "Could not read /etc/pkgos/pkgos.conf"
    exit 1
 else
    . /etc/pkgos/pkgos.conf
 fi
+
+# Parse params for the bb (build backport) function.
+# This is also useful here, as we'll parse each lines of the sid-list
+. ${HERE}/bb-parse-params
 
 if ! [ -r /etc/nodepool/provider ] ; then
     echo "Could not read /etc/nodepool/provider"
@@ -18,9 +25,6 @@ else
     NODEPOOL_MIRROR_HOST=${NODEPOOL_MIRROR_HOST:-mirror.$NODEPOOL_REGION.$NODEPOOL_CLOUD.openstack.org}
     NODEPOOL_MIRROR_HOST=$(echo $NODEPOOL_MIRROR_HOST|tr '[:upper:]' '[:lower:]')
 fi
-
-HERE=$(pwd)
-LAST_GIT_COMMIT=$(git log | head -n 1 | awk '{print $2}')
 
 cleanup_data () {
     rm -rf ${HERE}/etc
@@ -69,36 +73,67 @@ make_fake_mirror () {
 # param: $1 = sid or experimental
 decide_to_build_or_not () {
     SID_OR_EXP=${1}
-    for PKG_SOURCE in `cat ${SID_OR_EXP}-list | grep -E -v '^#'` ; do
-        echo "===> Checking status of ${PKG_SOURCE}:"
-        SID_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-${SID_OR_EXP}-mirror ${PKG_SOURCE} | awk '{print $3}' | tail -n 1)
-        echo "Sid version: ${SID_VERSION}"
-        OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-backports-mirror ${PKG_SOURCE} | awk '{print $3}' | tail -n 1)
-        if [ -z "${OUR_VERSION}" ] ; then
-            echo "Our version: missing package"
-            echo "Decision: rebuild"
-            echo ${PKG_SOURCE} >>rebuild-list-${SID_OR_EXP}
-        else
-            echo "Our version: ${OUR_VERSION}"
-            # Strip the added version number from our version"
-            STRIPPED_BPO_VERS=$(echo ${OUR_VERSION} | sed 's#\+[0-9]*~bpo8+1##')
-            STRIPPED_BPO_VERS=$(echo ${STRIPPED_BPO_VERS} | sed 's#~bpo8+1##')
-            echo "Stripped version: ${STRIPPED_BPO_VERS}"
-            # Check if we have lower version
-            if dpkg --compare-versions ${STRIPPED_BPO_VERS} lt ${SID_VERSION} ; then
-                echo "Decision: rebuild"
-                echo ${PKG_SOURCE} >>rebuild-list-${SID_OR_EXP}
+
+    set +x
+    # Strip commented out and empty lines, and iterate through them
+    TMPFILE=$(mktemp -t ${SID_OR_EXP}-list.XXXXXX)
+    cat ${SID_OR_EXP}-list | grep -E -v '^[ \t]*#' | grep -E -v '^$' >${TMPFILE}
+    while read PKG_SOURCE_LINE ; do
+        bb_parse_params ${PKG_SOURCE_LINE}
+        if [ "${DOWNLOAD_FROM_JESSIE_BACKPORTS}" = "yes" ] ; then
+            echo "===> Checking status of ${PKG_NAME}:"
+            JESSIE_BPO_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
+            echo "Jessie BPO version: ${JESSIE_BPO_VERSION}"
+            OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
+            if [ -z "${OUR_VERSION}" ] ; then
+                echo "Our version: missing package"
+                echo "Decision: download"
+                echo ${PKG_SOURCE_LINE} >>rebuild-list-${SID_OR_EXP}
             else
-                echo "Decision: skip"
+                echo "Our version: ${OUR_VERSION}"
+                if [ "${JESSIE_BPO_VERSION}" = "${OUR_VERSION}" ] ; then
+                    echo "Decision: skip"
+                else
+                    echo "Decision: download"
+                    echo ${PKG_SOURCE_LINE} >>rebuild-list-${SID_OR_EXP} 
+                fi
+            fi
+        else
+            echo "===> Checking status of ${PKG_NAME}:"
+            SID_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-${SID_OR_EXP}-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
+            echo "Sid version: ${SID_VERSION}"
+            OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
+            if [ -z "${OUR_VERSION}" ] ; then
+                echo "Our version: missing package"
+                echo "Decision: rebuild"
+                echo ${PKG_SOURCE_LINE} >>rebuild-list-${SID_OR_EXP}
+            else
+                echo "Our version: ${OUR_VERSION}"
+                # Strip the added version number from our version"
+                STRIPPED_BPO_VERS=$(echo ${OUR_VERSION} | sed 's#\+[0-9]*~bpo8+1##')
+                STRIPPED_BPO_VERS=$(echo ${STRIPPED_BPO_VERS} | sed 's#~bpo8+1##')
+                echo "Stripped version: ${STRIPPED_BPO_VERS}"
+                # Check if we have lower version
+                if dpkg --compare-versions ${STRIPPED_BPO_VERS} lt ${SID_VERSION} ; then
+                    echo "Decision: rebuild"
+                    echo ${PKG_SOURCE_LINE} >>rebuild-list-${SID_OR_EXP}
+                else
+                    echo "Decision: skip"
+                fi
             fi
         fi
-    done
+    done < $TMPFILE
+    rm $TMPFILE
+    set -x
+    echo "===> Rebuild list:"
+    cat rebuild-list-${SID_OR_EXP}
 }
 
 # param: $1 = sid or experimental
 rebuild_all_bpo () {
     SID_OR_EXP=${1}
-    for PKG_SOURCE in `cat rebuild-list-${SID_OR_EXP}` ; do
+    while read PKG_SOURCE_LINE ; do
+        PKG_SOURCE=$(echo ${PKG_SOURCE_LINE} | awk '{print $1}')
         echo "################################"
         echo "################################"
         echo "################################"
@@ -106,16 +141,15 @@ rebuild_all_bpo () {
         echo "################################"
         echo "################################"
         echo "################################"
-        ./bb ${PKG_SOURCE}
-#        ssh -o "StrictHostKeyChecking no" localhost "cd ${WORKSPACE} ; ./bb ${PKG_SOURCE}"
-    done
+        ./bb ${PKG_SOURCE_LINE}
+    done < rebuild-list-${SID_OR_EXP}
 }
-
 
 cleanup_data
 add_bpo_repo_to_sbuild
 make_ssh_keys
 make_fake_mirror jessie-newton-backports http://${NODEPOOL_MIRROR_HOST}/debian-openstack
+make_fake_mirror jessie-backports http://${NODEPOOL_MIRROR_HOST}/debian
 for DEBIAN_SUITE_TO_BUILD in sid ; do
     make_fake_mirror $DEBIAN_SUITE_TO_BUILD http://httpredir.debian.org/debian
     decide_to_build_or_not $DEBIAN_SUITE_TO_BUILD
