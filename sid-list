@@ -1,3 +1,5 @@
+# Each line is in fact a command line for the ./bb utility
+# which will do the actual rebuild of the package
 alabaster
 #antlr3
 #apscheduler
@@ -9,7 +11,7 @@ dirtbike
 #django-sekizai
 dnspython
 #faker
-gunicorn
+#gunicorn
 jinja2
 jquery
 kazoo
@@ -23,6 +25,7 @@ nose
 pygments
 pyinotify
 #pymongo
+pyopenssl --download-from-jessie-backports
 #pytest
 python-amqp
 #python-babel
