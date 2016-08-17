@@ -38,7 +38,7 @@ python-cassandra-driver
 #python-cryptography
 python-cryptography-vectors
 python-dateutil
-#python-django
+python-django --download-from-jessie-backports
 #python-docker
 python-dogpile.cache
 #python-elasticsearch
@@ -79,13 +79,13 @@ python-setuptools
 python-smmap
 #python-snappy
 python-subprocess32
-#python-txaio
 #python-tzlocal
 #python-unicodecsv
 #python-uritemplate
 python-urllib3
 #python-virtualenv
 #python-webob
+qpid-proton --download-from-jessie-backports
 requests
 #routes
 #setuptools-scm
@@ -101,5 +101,5 @@ turbogears2
 twisted
 #unittest2
 voluptuous
-#webkit2gtk
+webkit2gtk --download-from-jessie-backports
 zzzeeksphinx
