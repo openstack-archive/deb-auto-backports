@@ -1,0 +1,10 @@
+Code-Review+2: Ivan Udovichenko <iudovichenko@mirantis.com>
+Workflow+1: Ivan Udovichenko <iudovichenko@mirantis.com>
+Code-Review+2: Igor Yozhikov <iyozhikov@mirantis.com>
+Workflow+1: Igor Yozhikov <iyozhikov@mirantis.com>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Wed, 17 Aug 2016 14:59:57 +0000
+Reviewed-on: https://review.openstack.org/354632
+Project: openstack/deb-auto-backports
+Branch: refs/heads/debian/newton
