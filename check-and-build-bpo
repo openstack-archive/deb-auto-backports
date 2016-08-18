@@ -143,7 +143,7 @@ add_bpo_repo_to_sbuild
 make_ssh_keys
 make_fake_mirror jessie-newton-backports http://${NODEPOOL_MIRROR_HOST}/debian-openstack
 make_fake_mirror jessie-backports http://httpredir.debian.org/debian
-make_fake_mirror unstable http://httpredir.debian.org/debian
+make_fake_mirror sid http://httpredir.debian.org/debian
 make_fake_mirror experimental http://httpredir.debian.org/debian
 decide_to_build_or_not
 rebuild_all_bpo
