@@ -40,7 +40,8 @@ pkgos_bb_get_package_info () {
     else
         RMADURL=""
     fi
-    DEB_VERSION=`rmadison $RMADURL -a source --suite=${SRC_DISTRO} ${PKG_NAME} | awk '{print $3}'`
+    RMAD_CONTENT=$(rmadison $RMADURL -a source --suite=${SRC_DISTRO} ${PKG_NAME} | tail -n1)
+    DEB_VERSION=$(echo "${RMAD_CONTENT}" | awk '{print $3}')
     UPSTREAM_VERSION=`echo ${DEB_VERSION} | sed 's/-[^-]*$//' | cut -d":" -f2`
     DSC_URL=`cat ${PKG_INFO_FILE} | grep dsc | cut -d'"' -f2`
     rm ${PKG_INFO_FILE}
