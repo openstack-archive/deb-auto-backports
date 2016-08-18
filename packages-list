@@ -28,7 +28,7 @@ pyinotify
 #pymongo
 pyopenssl --download-from-jessie-backports
 #pytest
-python-amqp
+python-amqp --download-from-jessie-backports
 #python-babel
 #python-cachecontrol
 #python-cachetools
