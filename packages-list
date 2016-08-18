@@ -10,6 +10,7 @@ dirtbike
 #django-nose
 #django-sekizai
 dnspython
+dpkg
 #faker
 #gunicorn
 jinja2
