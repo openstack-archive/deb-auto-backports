@@ -1,0 +1,8 @@
+Code-Review+2: Thomas Goirand <thomas@goirand.fr>
+Workflow+1: Thomas Goirand <thomas@goirand.fr>
+Verified+2: Jenkins
+Submitted-by: Jenkins
+Submitted-at: Fri, 19 Aug 2016 15:11:11 +0000
+Reviewed-on: https://review.openstack.org/357807
+Project: openstack/deb-auto-backports
+Branch: refs/heads/debian/newton
