@@ -130,22 +130,23 @@ decide_to_build_or_not () {
 # param: $1 = sid or experimental
 rebuild_all_bpo () {
     echo "Build list is:"
-    cat rebuild-list
+    cat ${HERE}/rebuild-list
     while read MY_PKG_SOURCE_LINE ; do
         MY_PKG_SOURCE=$(echo ${MY_PKG_SOURCE_LINE} | awk '{print $1}')
         echo "### REBUILDING ${MY_PKG_SOURCE} ###"
         ./bb ${MY_PKG_SOURCE_LINE}
-    done < rebuild-list
+    done < ${HERE}/rebuild-list
 }
 
 cleanup_data
-add_bpo_repo_to_sbuild
+#add_bpo_repo_to_sbuild
 make_ssh_keys
 make_fake_mirror jessie-newton-backports http://${NODEPOOL_MIRROR_HOST}/debian-openstack
 make_fake_mirror jessie-backports http://httpredir.debian.org/debian
 make_fake_mirror sid http://httpredir.debian.org/debian
 make_fake_mirror experimental http://httpredir.debian.org/debian
 decide_to_build_or_not
+set -x
 rebuild_all_bpo
 
 TARGET_FTP_FOLDER=${HERE}/uploads/${LAST_GIT_COMMIT}
