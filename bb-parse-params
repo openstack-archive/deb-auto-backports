@@ -4,10 +4,12 @@
 usage () {
     echo "Usage: ./bb <source-package> [-d <DISTRO>]"
     echo " -d <DISTRO>: Define from which distro to backport"
+    echo "Called with: ${BB_ALL_PARAMS}"
     exit 1
 }
 
 bb_parse_params () {
+    BB_ALL_PARAMS="$@"
     PKG_NAME=${1}
     shift
     UPLOAD=no
