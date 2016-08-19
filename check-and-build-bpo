@@ -131,11 +131,14 @@ decide_to_build_or_not () {
 rebuild_all_bpo () {
     echo "Build list is:"
     cat ${HERE}/rebuild-list
-    while read MY_PKG_SOURCE_LINE ; do
-        MY_PKG_SOURCE=$(echo ${MY_PKG_SOURCE_LINE} | awk '{print $1}')
-        echo "### REBUILDING ${MY_PKG_SOURCE} ###"
-        ./bb ${MY_PKG_SOURCE_LINE}
-    done < ${HERE}/rebuild-list
+
+    NUM_LINES=$(cat ${HERE}/rebuild-list | wc -l)
+    while ! [ ${NUM_LINES} = 0 ] ; do
+        LINE=$(cat ${HERE}/rebuild-list | tail -n ${NUM_LINES} | head -n 1)
+        echo "### REBUILDING ${LINE} ###"
+        ./bb ${LINE}
+        NUM_LINES=$(($NUM_LINES - 1))
+    done
 }
 
 cleanup_data
