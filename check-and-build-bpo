@@ -131,6 +131,7 @@ decide_to_build_or_not () {
 rebuild_all_bpo () {
     echo "Build list is:"
     cat rebuild-list
+    set -x
     while read MY_PKG_SOURCE_LINE ; do
         MY_PKG_SOURCE=$(echo ${MY_PKG_SOURCE_LINE} | awk '{print $1}')
         echo "### REBUILDING ${MY_PKG_SOURCE} ###"
@@ -139,7 +140,7 @@ rebuild_all_bpo () {
 }
 
 cleanup_data
-add_bpo_repo_to_sbuild
+#add_bpo_repo_to_sbuild
 make_ssh_keys
 make_fake_mirror jessie-newton-backports http://${NODEPOOL_MIRROR_HOST}/debian-openstack
 make_fake_mirror jessie-backports http://httpredir.debian.org/debian
