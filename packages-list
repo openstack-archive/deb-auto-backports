@@ -5,7 +5,7 @@ alabaster
 #apscheduler
 #betamax
 #contextlib2
-dh-python
+#dh-python
 dirtbike
 #django-nose
 #django-sekizai
@@ -26,7 +26,7 @@ nose
 pygments
 pyinotify
 #pymongo
-pyopenssl --download-from-jessie-backports
+pyopenssl -d jessie-backports
 #pytest
 python-amqp
 #python-babel
