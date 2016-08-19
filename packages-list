@@ -26,7 +26,7 @@ nose
 pygments
 pyinotify
 #pymongo
-#pyopenssl -d jessie-backports
+pyopenssl -d jessie-backports
 #pytest
 python-amqp
 #python-babel
@@ -39,7 +39,7 @@ python-cassandra-driver
 #python-cryptography
 python-cryptography-vectors
 python-dateutil
-#python-django -d jessie-backports
+python-django -d jessie-backports
 #python-docker
 python-dogpile.cache
 #python-elasticsearch
@@ -86,7 +86,7 @@ python-subprocess32
 python-urllib3
 #python-virtualenv
 #python-webob
-qpid-proton --download-from-jessie-backports
+#qpid-proton -d jessie-backports
 requests
 #routes
 #setuptools-scm
@@ -102,5 +102,5 @@ turbogears2
 twisted
 #unittest2
 voluptuous
-webkit2gtk --download-from-jessie-backports
+#webkit2gtk -d jessie-backports
 zzzeeksphinx
