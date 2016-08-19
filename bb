@@ -119,7 +119,9 @@ pgkos_build_the_bpo () {
     else
         PACKAGE_IS_NATIVE="no"
     fi
-    dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distribution ${TARGET_DISTRO}-backports -m  "Rebuilt for ${TARGET_DISTRO}."
+    if ! [ "${TARGET_DISTRO}" = "jessie-backports" ] ; then
+        dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distribution ${TARGET_DISTRO}-backports -m  "Rebuilt for ${TARGET_DISTRO}."
+    fi
 
     if [ ${PACKAGE_IS_NATIVE} = "yes" ] ; then
         cd ../*bpo8+1
@@ -151,3 +153,4 @@ if [ "${DOWNLOAD_FROM_JESSIE_BACKPORTS}" = "yes" ] ; then
 else
     pgkos_build_the_bpo
 fi
+cd ${HERE}
