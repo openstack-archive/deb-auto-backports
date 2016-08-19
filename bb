@@ -119,7 +119,9 @@ pgkos_build_the_bpo () {
     else
         PACKAGE_IS_NATIVE="no"
     fi
-    if ! [ "${TARGET_DISTRO}" = "jessie-backports" ] ; then
+    # We don't need to dch --bpo if we're only rebuilding from official
+    # jessie-backports.
+    if ! [ "${SRC_DISTRO}" = "jessie-backports" ] ; then
         dch --newversion ${DEB_VERSION}~${BPO_POSTFIX} -b --allow-lower-version --distribution ${TARGET_DISTRO}-backports -m  "Rebuilt for ${TARGET_DISTRO}."
     fi
 
