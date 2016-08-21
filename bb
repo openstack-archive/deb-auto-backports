@@ -68,17 +68,97 @@ prep_upload_folder () {
     mkdir -p ${TARGET_FTP_FOLDER}
 }
 
+# Generate a .changes file out of a folder containing a source + binaries package
+# params: $1 = folder where the files are located
+make_changes_file () {
+    local MCF_EXTRACTED_FOLDER MCF_CHANGELOG_DATE MCF_SOURCE_PKGNAME MCF_BINARY_LIST MCF_DEBIAN_VERSION MCF_DEBIAN_VERSION_NO_EPOCH MCF_NUM_LINES_PARSECHANGE MCF_START_CHANGES_LINE MCF_MAINTAINER MCF_binary_package MCF_SHORT_DESC MCF_FILE_LIST MCF_OLD_DIR
+    MCF_OLD_DIR=$(pwd)
+    cd ${1}
+    # Extract the package to get metadata with dpkg-parsechangelog and friends
+    dpkg-source -x *.dsc
+    MCF_EXTRACTED_FOLDER=$(find . -maxdepth 1 -type d | tail -n1 | cut -d/ -f2)
+    cd ${MCF_EXTRACTED_FOLDER}
+    MCF_CHANGELOG_DATE=$(dpkg-parsechangelog -SDate)
+    MCF_SOURCE_PKGNAME=$(dpkg-parsechangelog -SSource)
+    MCF_BINARY_LIST=$(cat debian/control | grep -E '^Package:' | sed -e 's/^Package: //' | tr '\n' ' ')
+    # This trims last char (ie: a space)
+    MCF_BINARY_LIST=${MCF_BINARY_LIST%?}
+    MCF_DEBIAN_VERSION=$(dpkg-parsechangelog -SVersion)
+    MCF_DEBIAN_VERSION_NO_EPOCH=$(echo ${MCF_DEBIAN_VERSION} | sed -e 's/^[[:digit:]]*://')
+    # Calculate the num of lines of the "Changes:" part
+    MCF_NUM_LINES_PARSECHANGE=$(dpkg-parsechangelog | wc -l)
+    MCF_START_CHANGES_LINE=$(dpkg-parsechangelog | grep -n "Changes:" | cut -d: -f1)
+    MCF_CHANGE_FIELD_NUM_LINES=$((${MCF_NUM_LINES_PARSECHANGE} - ${MCF_START_CHANGES_LINE} + 1))
+    MCF_MAINTAINER=$(dpkg-parsechangelog -SMaintainer)
+
+    echo "Format: 1.8
+Date: ${MCF_CHANGELOG_DATE}
+Source: ${MCF_SOURCE_PKGNAME}
+Binary: ${MCF_BINARY_LIST}
+Architecture: source all
+Version: ${MCF_DEBIAN_VERSION}
+Distribution: jessie-newton-backports
+Urgency: medium
+Maintainer: ${MCF_MAINTAINER}
+Changed-By: Thomas Goirand <zigo@debian.org>
+Description:"
+    # Get all binary package descriptions
+    for MCF_binary_package in ${MCF_BINARY_LIST} ; do
+        MCF_SHORT_DESC=$(dpkg-deb -I ../${MCF_binary_package}_${MCF_DEBIAN_VERSION_NO_EPOCH}_*.deb | grep -E '^ Description:' | sed -e 's/^ Description: //')
+        echo " ${MCF_binary_package} - ${MCF_SHORT_DESC}"
+    done
+    dpkg-parsechangelog | tail -n ${MCF_CHANGE_FIELD_NUM_LINES}
+    cd ..
+    rm -rf ${MCF_EXTRACTED_FOLDER}
+
+    # Generate all the sums
+    MCF_FILE_LIST=$(find . -maxdepth 1 -type f | grep -v $0 | cut -d/ -f2 | tr '\n' ' ')
+    MCF_FILE_LIST=${MCF_FILE_LIST%?}
+    echo "Checksums-Sha1:"
+    for MCF_file in ${MCF_FILE_LIST} ; do
+        SHA1SUM=$(sha1sum ${MCF_file} | cut -d' ' -f1)
+        FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
+        echo " ${SHA1SUM} ${FILESIZE} ${MCF_file}"
+    done
+    echo "Checksums-Sha256:"
+    for MCF_file in ${MCF_FILE_LIST} ; do
+        SHA256SUM=$(sha256sum ${MCF_file} | cut -d' ' -f1)
+        FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
+        echo " ${SHA256SUM} ${FILESIZE} ${MCF_file}"
+    done
+    echo "Files:"
+    for MCF_file in ${MCF_FILE_LIST} ; do
+        MD5SUM=$(md5sum ${MCF_file} | cut -d' ' -f1)
+        FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
+        echo " ${MD5SUM} ${FILESIZE} ${MCF_file}"
+    done
+    cd ${MCF_OLD_DIR}
+}
+
+# Download a package (binary + source), generate a .changes, and push to the uploads folder
+# Params: ${PKG_NAME} = source package name
 download_the_backport () {
-    prep_upload_folder
-    TMPFILE=$(mktemp -t download-list-of-binaries.XXXXXX)
-    madison-lite --source-and-binary -a amd64 --mirror ${HERE}/etc/pkgos/fake-jessie-backports-mirror ${PKG_NAME} >${TMPFILE}
+    local DTB_TMPDIR DTB_CURDIR DTB_TMPFILE
+
+    DTB_CURDIR=$(pwd)
+    DTB_TMPFILE=$(mktemp -t download-list-of-binaries.XXXXXX)
+    DTB_TMPDIR=$(mktemp -d -t download-folder-of-binaries.XXXXXX)
+
+    madison-lite --source-and-binary -a amd64 --mirror ${HERE}/etc/pkgos/fake-jessie-backports-mirror ${PKG_NAME} >${DTB_TMPFILE}
+    cd ${DTB_TMPDIR}
     while read DTB_PKG_SOURCE_LINE ; do
         compute_download_url "${DTB_PKG_SOURCE_LINE}"
-        wget http://httpredir.debian.org/${URL} -O ${TARGET_FTP_FOLDER}/${BINARY_PACKAGE_FILENAME}
-    done < ${TMPFILE}
-    rm ${TMPFILE}
+        wget http://httpredir.debian.org/${URL}
+    done < ${DTB_TMPFILE}
+    rm ${DTB_TMPFILE}
     cd ${TARGET_FTP_FOLDER}
     dget -d -u ${DSC_URL}
+    make_changes_file ${DTB_TMPDIR}
+    cd ${DTB_CURDIR}
+
+    prep_upload_folder
+    cp ${DTB_TMPDIR}/* ${TARGET_FTP_FOLDER}/${BINARY_PACKAGE_FILENAME}
+    rm -rf ${DTB_TMPFILE} ${DTB_TMPDIR}
 }
 
 
