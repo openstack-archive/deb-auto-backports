@@ -102,5 +102,5 @@ turbogears2
 twisted
 #unittest2
 voluptuous
-#webkit2gtk -d jessie-backports
+webkit2gtk -d experimental
 zzzeeksphinx
