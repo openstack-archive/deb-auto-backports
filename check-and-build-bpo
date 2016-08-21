@@ -61,9 +61,17 @@ make_fake_mirror () {
          mkdir -p ${DEST_DIST_DIR}/$i
       fi
       if [ "$i" = "source" ] ; then
-         GZFILE=Sources.gz
+          if [ "${NAME_OF_MIRROR}" = "experimental" ] ; then
+              GZFILE=Sources.xz
+          else
+              GZFILE=Sources.gz
+          fi
       else
-         GZFILE=Packages.gz
+          if [ "${NAME_OF_MIRROR}" = "experimental" ] ; then
+              GZFILE=Packages.xz
+          else
+              GZFILE=Packages.gz
+          fi
       fi
       rm -f ${DEST_DIST_DIR}/$i/$GZFILE
       wget ${FETCH_REPO_URL}/dists/${NAME_OF_MIRROR}/main/$i/$GZFILE -O ${DEST_DIST_DIR}/$i/$GZFILE || true
