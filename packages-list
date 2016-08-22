@@ -13,7 +13,7 @@ dirtbike
 dnspython
 dpkg
 #faker
-#git-buildpackage
+git-buildpackage
 #gunicorn
 jinja2
 jquery
