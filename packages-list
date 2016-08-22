@@ -3,6 +3,7 @@
 alabaster
 #antlr3
 #apscheduler
+bash-completion
 #betamax
 #contextlib2
 #dh-python
@@ -12,6 +13,7 @@ dirtbike
 dnspython
 dpkg
 #faker
+#git-buildpackage
 #gunicorn
 jinja2
 jquery
