@@ -82,9 +82,9 @@ python-setuptools
 python-smmap
 #python-snappy
 python-subprocess32
-#python-tzlocal
-#python-unicodecsv
-#python-uritemplate
+python-tzlocal
+python-unicodecsv
+python-uritemplate
 python-urllib3
 #python-virtualenv
 #python-webob
