@@ -102,7 +102,7 @@ sqlalchemy
 suds
 turbogears2
 twisted
-#unittest2
+unittest2
 voluptuous
 #webkit2gtk -d jessie-backports
 zzzeeksphinx
