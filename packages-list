@@ -36,7 +36,7 @@ python-amqp
 #python-cachetools
 python-cassandra-driver
 #python-cbor
-#python-cffi
+python-cffi -d jessie-backports
 #python-crank
 #python-cryptography
 python-cryptography-vectors
