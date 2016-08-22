@@ -61,7 +61,7 @@ python-ldap3
 #python-lockfile
 #python-lz4
 python-mysqldb
-#python-nacl
+python-nacl
 #python-networkx
 #python-packaging
 python-pathlib
