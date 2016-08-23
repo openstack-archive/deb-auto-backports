@@ -87,7 +87,7 @@ python-unicodecsv
 python-uritemplate
 python-urllib3
 #python-virtualenv
-#python-webob
+python-webob -d jessie-backports
 qpid-proton -d jessie-backports
 requests
 #routes
