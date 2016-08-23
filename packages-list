@@ -23,7 +23,7 @@ kazoo
 #nodeenv
 nose
 #pandas
-#pep8
+pep8
 #pyasn1
 pygments
 pyinotify
