@@ -28,7 +28,7 @@ pyasn1
 pygments
 pyinotify
 pymongo -d jessie-backports
-#pyopenssl -d jessie-backports
+pyopenssl -d jessie-backports
 pytest -d jessie-backports
 python-amqp
 #python-babel
