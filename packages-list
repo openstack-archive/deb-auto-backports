@@ -27,7 +27,7 @@ pep8
 pyasn1
 pygments
 pyinotify
-#pymongo
+pymongo -d jessie-backports
 #pyopenssl -d jessie-backports
 #pytest
 python-amqp
