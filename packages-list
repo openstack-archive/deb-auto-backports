@@ -29,7 +29,7 @@ pygments
 pyinotify
 #pymongo
 #pyopenssl -d jessie-backports
-#pytest
+pytest -d jessie-backports
 python-amqp
 #python-babel
 #python-cachecontrol
