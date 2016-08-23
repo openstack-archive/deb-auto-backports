@@ -5,6 +5,7 @@ alabaster
 #apscheduler
 bash-completion
 #betamax
+codespeak-lib -d jessie-backports
 #contextlib2
 #dh-python
 dirtbike
