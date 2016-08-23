@@ -14,7 +14,7 @@ dnspython
 dpkg
 #faker
 git-buildpackage
-#gunicorn
+gunicorn
 jinja2
 jquery
 kazoo
