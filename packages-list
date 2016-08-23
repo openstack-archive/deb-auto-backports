@@ -38,8 +38,8 @@ python-cassandra-driver
 #python-cbor
 python-cffi -d jessie-backports
 #python-crank
-#python-cryptography
-python-cryptography-vectors
+#python-cryptography -d jessie-backports
+python-cryptography-vectors -d jessie-backports
 python-dateutil
 python-django -d jessie-backports
 #python-docker

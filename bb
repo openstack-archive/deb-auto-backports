@@ -35,12 +35,7 @@ pkgos_bb_get_package_info () {
     # Get info from packages.debian.org
     PKG_INFO_FILE=`mktemp -t pkg_info_file.XXXXXX`
     wget --no-check-certificate -O ${PKG_INFO_FILE} http://packages.debian.org/source/${SRC_DISTRO}/${PKG_NAME}
-    if [ `lsb_release -i -s` = "Ubuntu" ] ; then
-        RMADURL="--url=http://qa.debian.org/madison.php"
-    else
-        RMADURL=""
-    fi
-    DEB_VERSION=`rmadison $RMADURL -a source --suite=${SRC_DISTRO} ${PKG_NAME} | awk '{print $3}'`
+    DEB_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-${SRC_DISTRO}-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
     UPSTREAM_VERSION=`echo ${DEB_VERSION} | sed 's/-[^-]*$//' | cut -d":" -f2`
     DSC_URL=`cat ${PKG_INFO_FILE} | grep dsc | cut -d'"' -f2`
     rm ${PKG_INFO_FILE}
