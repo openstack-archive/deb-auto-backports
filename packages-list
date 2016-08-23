@@ -24,7 +24,7 @@ kazoo
 nose
 #pandas
 pep8
-#pyasn1
+pyasn1
 pygments
 pyinotify
 #pymongo
@@ -51,7 +51,7 @@ python-eventlet
 #python-gitdb
 #python-googleapi
 #python-gssapi
-#python-hypothesis
+python-hypothesis
 python-idna
 python-imagesize
 python-ipaddress
