@@ -93,7 +93,7 @@ requests
 #routes
 #setuptools-scm
 six
-#sphinx
+sphinx -d jessie-backports
 #sphinx-argparse
 #sphinx-bootstrap-theme
 #sphinx-testing
