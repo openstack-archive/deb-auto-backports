@@ -90,7 +90,7 @@ python-urllib3
 #python-webob
 qpid-proton -d jessie-backports
 requests
-#routes
+routes
 #setuptools-scm
 six
 #sphinx
