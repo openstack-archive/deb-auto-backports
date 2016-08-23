@@ -8,8 +8,8 @@ bash-completion
 #contextlib2
 #dh-python
 dirtbike
-#django-nose
-#django-sekizai
+django-nose
+django-sekizai
 dnspython
 dpkg
 #faker
