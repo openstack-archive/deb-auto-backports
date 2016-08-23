@@ -31,13 +31,12 @@ pymongo -d jessie-backports
 #pyopenssl -d jessie-backports
 #pytest
 python-amqp
-#python-babel
+python-babel
 #python-cachecontrol
 #python-cachetools
 python-cassandra-driver
 #python-cbor
 python-cffi -d jessie-backports
-#python-crank
 python-cryptography -d jessie-backports
 python-cryptography-vectors -d jessie-backports
 python-dateutil
