@@ -65,7 +65,7 @@ python-nacl
 #python-networkx
 #python-packaging
 python-pathlib
-#python-pika
+python-pika -d jessie-backports
 #python-pip
 #python-progress
 #python-py
