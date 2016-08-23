@@ -68,7 +68,7 @@ python-pathlib
 #python-pika
 #python-pip
 #python-progress
-#python-py
+python-py -d jessie-backports
 #python-pygraphviz
 #python-pysaml2
 #python-pyscss
