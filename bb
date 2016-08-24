@@ -101,32 +101,32 @@ Description:" > ${MCF_DOT_CHANGE_FNAME}
     # Get all binary package descriptions
     for MCF_binary_package in ${MCF_BINARY_LIST} ; do
         MCF_SHORT_DESC=$(dpkg-deb -I ../${MCF_binary_package}_${MCF_DEBIAN_VERSION_NO_EPOCH}_*.deb | grep -E '^ Description:' | sed -e 's/^ Description: //')
-        echo " ${MCF_binary_package} - ${MCF_SHORT_DESC}" > ${MCF_DOT_CHANGE_FNAME}
+        echo " ${MCF_binary_package} - ${MCF_SHORT_DESC}" >> ${MCF_DOT_CHANGE_FNAME}
     done
-    dpkg-parsechangelog | tail -n ${MCF_CHANGE_FIELD_NUM_LINES} > ${MCF_DOT_CHANGE_FNAME}
+    dpkg-parsechangelog | tail -n ${MCF_CHANGE_FIELD_NUM_LINES} >> ${MCF_DOT_CHANGE_FNAME}
     cd ..
     rm -rf ${MCF_EXTRACTED_FOLDER}
 
     # Generate all the sums
     MCF_FILE_LIST=$(find . -maxdepth 1 -type f | grep -v $0 | cut -d/ -f2 | tr '\n' ' ')
     MCF_FILE_LIST=${MCF_FILE_LIST%?}
-    echo "Checksums-Sha1:" > ${MCF_DOT_CHANGE_FNAME}
+    echo "Checksums-Sha1:" >> ${MCF_DOT_CHANGE_FNAME}
     for MCF_file in ${MCF_FILE_LIST} ; do
         SHA1SUM=$(sha1sum ${MCF_file} | cut -d' ' -f1)
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
-        echo " ${SHA1SUM} ${FILESIZE} ${MCF_file}" > ${MCF_DOT_CHANGE_FNAME}
+        echo " ${SHA1SUM} ${FILESIZE} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
     echo "Checksums-Sha256:"
     for MCF_file in ${MCF_FILE_LIST} ; do
         SHA256SUM=$(sha256sum ${MCF_file} | cut -d' ' -f1)
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
-        echo " ${SHA256SUM} ${FILESIZE} ${MCF_file}" > ${MCF_DOT_CHANGE_FNAME}
+        echo " ${SHA256SUM} ${FILESIZE} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
     echo "Files:"
     for MCF_file in ${MCF_FILE_LIST} ; do
         MD5SUM=$(md5sum ${MCF_file} | cut -d' ' -f1)
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
-        echo " ${MD5SUM} ${FILESIZE} ${MCF_file}" > ${MCF_DOT_CHANGE_FNAME}
+        echo " ${MD5SUM} ${FILESIZE} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
     cd ${MCF_OLD_DIR}
 }
