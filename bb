@@ -129,12 +129,12 @@ Description:" > ../${MCF_DOT_CHANGE_FNAME}
         MD5SUM=$(md5sum ${MCF_file} | cut -d' ' -f1)
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
         MCF_PACKAGE_SECTION=$(dpkg-deb -I ${MCF_file} | grep -E '^ Section:' | sed -e 's/^ Section: //')
-        MCF_PACKAGE_SECTION=$(dpkg-deb -I ${MCF_file} | grep -E '^ Priority:' | sed -e 's/^ Priority: //')
+        MCF_PACKAGE_PRIORITY=$(dpkg-deb -I ${MCF_file} | grep -E '^ Priority:' | sed -e 's/^ Priority: //')
         if [ -z "${MCF_PACKAGE_SECTION}" ] ; then
             MCF_PACKAGE_SECTION=${MCF_SRC_PACKAGE_SECTION}
         fi
-        if [ -z "${MCF_PACKAGE_SECTION}" ] ; then
-            MCF_PACKAGE_SECTION=${MCF_SRC_PACKAGE_PRIORITY}
+        if [ -z "${MCF_PACKAGE_PRIORITY}" ] ; then
+            MCF_PACKAGE_PRIORITY=${MCF_SRC_PACKAGE_PRIORITY}
         fi
         echo " ${MD5SUM} ${FILESIZE} ${MCF_PACKAGE_SECTION} ${MCF_PACKAGE_PRIORITY} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
