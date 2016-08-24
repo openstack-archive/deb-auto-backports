@@ -126,7 +126,9 @@ Description:" > ../${MCF_DOT_CHANGE_FNAME}
     for MCF_file in ${MCF_FILE_LIST} ; do
         MD5SUM=$(md5sum ${MCF_file} | cut -d' ' -f1)
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
-        echo " ${MD5SUM} ${FILESIZE} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
+        MCF_PACKAGE_SECTION=$(dpkg-deb -I ${MCF_file} | grep -E '^ Section:' | sed -e 's/^ Section: //')
+        MCF_PACKAGE_SECTION=$(dpkg-deb -I ${MCF_file} | grep -E '^ Priority:' | sed -e 's/^ Priority: //')
+        echo " ${MD5SUM} ${FILESIZE} ${MCF_PACKAGE_SECTION} ${MCF_PACKAGE_PRIORITY} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
     cd ${MCF_OLD_DIR}
 }
