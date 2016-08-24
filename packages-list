@@ -71,7 +71,7 @@ python-pika -d jessie-backports
 python-py -d jessie-backports
 #python-pygraphviz
 #python-pysaml2
-#python-pyscss
+python-pyscss -d jessie-backports
 #python-repoze.what
 #python-repoze.what-plugins
 #python-repoze.who
