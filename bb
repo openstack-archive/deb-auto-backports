@@ -66,13 +66,15 @@ prep_upload_folder () {
 # Generate a .changes file out of a folder containing a source + binaries package
 # params: $1 = folder where the files are located
 make_changes_file () {
-    local MCF_EXTRACTED_FOLDER MCF_CHANGELOG_DATE MCF_SOURCE_PKGNAME MCF_BINARY_LIST MCF_DEBIAN_VERSION MCF_DEBIAN_VERSION_NO_EPOCH MCF_NUM_LINES_PARSECHANGE MCF_START_CHANGES_LINE MCF_MAINTAINER MCF_binary_package MCF_SHORT_DESC MCF_FILE_LIST MCF_OLD_DIR MCF_DOT_CHANGE_FNAME
+    local MCF_EXTRACTED_FOLDER MCF_CHANGELOG_DATE MCF_SOURCE_PKGNAME MCF_BINARY_LIST MCF_DEBIAN_VERSION MCF_DEBIAN_VERSION_NO_EPOCH MCF_NUM_LINES_PARSECHANGE MCF_START_CHANGES_LINE MCF_MAINTAINER MCF_binary_package MCF_SHORT_DESC MCF_FILE_LIST MCF_OLD_DIR MCF_DOT_CHANGE_FNAME MCF_SRC_PACKAGE_SECTION MCF_SRC_PACKAGE_PRIORITY
     MCF_OLD_DIR=$(pwd)
     cd ${1}
     # Extract the package to get metadata with dpkg-parsechangelog and friends
     dpkg-source -x *.dsc
     MCF_EXTRACTED_FOLDER=$(find . -maxdepth 1 -type d | tail -n1 | cut -d/ -f2)
     cd ${MCF_EXTRACTED_FOLDER}
+    MCF_SRC_PACKAGE_SECTION=$(cat debian/control | grep -E '^Section: ' | head -n1 | sed -e 's/^Section: //')
+    MCF_SRC_PACKAGE_PRIORITY=$(cat debian/control | grep -E '^Priority: ' | head -n1 | sed -e 's/^Priority: //')
     MCF_CHANGELOG_DATE=$(dpkg-parsechangelog -SDate)
     MCF_SOURCE_PKGNAME=$(dpkg-parsechangelog -SSource)
     MCF_BINARY_LIST=$(cat debian/control | grep -E '^Package:' | sed -e 's/^Package: //' | tr '\n' ' ')
@@ -128,6 +130,12 @@ Description:" > ../${MCF_DOT_CHANGE_FNAME}
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
         MCF_PACKAGE_SECTION=$(dpkg-deb -I ${MCF_file} | grep -E '^ Section:' | sed -e 's/^ Section: //')
         MCF_PACKAGE_SECTION=$(dpkg-deb -I ${MCF_file} | grep -E '^ Priority:' | sed -e 's/^ Priority: //')
+        if [ -z "${MCF_PACKAGE_SECTION}" ] ; then
+            MCF_PACKAGE_SECTION=${MCF_SRC_PACKAGE_SECTION}
+        fi
+        if [ -z "${MCF_PACKAGE_SECTION}" ] ; then
+            MCF_PACKAGE_SECTION=${MCF_SRC_PACKAGE_PRIORITY}
+        fi
         echo " ${MD5SUM} ${FILESIZE} ${MCF_PACKAGE_SECTION} ${MCF_PACKAGE_PRIORITY} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
     cd ${MCF_OLD_DIR}
