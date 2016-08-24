@@ -97,13 +97,13 @@ Distribution: jessie-newton-backports
 Urgency: medium
 Maintainer: ${MCF_MAINTAINER}
 Changed-By: Thomas Goirand <zigo@debian.org>
-Description:" > ${MCF_DOT_CHANGE_FNAME}
+Description:" > ../${MCF_DOT_CHANGE_FNAME}
     # Get all binary package descriptions
     for MCF_binary_package in ${MCF_BINARY_LIST} ; do
         MCF_SHORT_DESC=$(dpkg-deb -I ../${MCF_binary_package}_${MCF_DEBIAN_VERSION_NO_EPOCH}_*.deb | grep -E '^ Description:' | sed -e 's/^ Description: //')
-        echo " ${MCF_binary_package} - ${MCF_SHORT_DESC}" >> ${MCF_DOT_CHANGE_FNAME}
+        echo " ${MCF_binary_package} - ${MCF_SHORT_DESC}" >> ../${MCF_DOT_CHANGE_FNAME}
     done
-    dpkg-parsechangelog | tail -n ${MCF_CHANGE_FIELD_NUM_LINES} >> ${MCF_DOT_CHANGE_FNAME}
+    dpkg-parsechangelog | tail -n ${MCF_CHANGE_FIELD_NUM_LINES} >> ../${MCF_DOT_CHANGE_FNAME}
     cd ..
     rm -rf ${MCF_EXTRACTED_FOLDER}
 
