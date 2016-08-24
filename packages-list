@@ -2,7 +2,7 @@
 # which will do the actual rebuild of the package
 alabaster
 #antlr3
-#apscheduler
+apscheduler
 bash-completion
 #betamax
 #contextlib2
