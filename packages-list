@@ -12,7 +12,7 @@ django-nose
 django-sekizai
 dnspython
 dpkg
-#faker
+faker
 git-buildpackage
 gunicorn
 jinja2
