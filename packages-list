@@ -67,7 +67,7 @@ python-nacl
 python-pathlib
 python-pika -d jessie-backports
 #python-pip
-#python-progress
+python-progress
 python-py -d jessie-backports
 #python-pygraphviz
 #python-pysaml2
