@@ -14,7 +14,7 @@ dnspython
 dpkg
 faker
 git-buildpackage
-gunicorn
+#gunicorn <- Already in the archive, creates errors in reprepro
 jinja2
 jquery
 kazoo
