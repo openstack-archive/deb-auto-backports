@@ -116,13 +116,13 @@ Description:" > ${MCF_DOT_CHANGE_FNAME}
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
         echo " ${SHA1SUM} ${FILESIZE} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
-    echo "Checksums-Sha256:"
+    echo "Checksums-Sha256:" >> ${MCF_DOT_CHANGE_FNAME}
     for MCF_file in ${MCF_FILE_LIST} ; do
         SHA256SUM=$(sha256sum ${MCF_file} | cut -d' ' -f1)
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
         echo " ${SHA256SUM} ${FILESIZE} ${MCF_file}" >> ${MCF_DOT_CHANGE_FNAME}
     done
-    echo "Files:"
+    echo "Files:" >> ${MCF_DOT_CHANGE_FNAME}
     for MCF_file in ${MCF_FILE_LIST} ; do
         MD5SUM=$(md5sum ${MCF_file} | cut -d' ' -f1)
         FILESIZE=$(ls -l ${MCF_file} | awk '{print $5}')
