@@ -110,7 +110,7 @@ Description:" > ../${MCF_DOT_CHANGE_FNAME}
     rm -rf ${MCF_EXTRACTED_FOLDER}
 
     # Generate all the sums
-    MCF_FILE_LIST=$(find . -maxdepth 1 -type f | grep -v $0 | cut -d/ -f2 | tr '\n' ' ')
+    MCF_FILE_LIST=$(find . -maxdepth 1 -type f | grep -v $0 | grep -v -E '.changes$' | cut -d/ -f2 | tr '\n' ' ')
     MCF_FILE_LIST=${MCF_FILE_LIST%?}
     echo "Checksums-Sha1:" >> ${MCF_DOT_CHANGE_FNAME}
     for MCF_file in ${MCF_FILE_LIST} ; do
