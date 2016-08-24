@@ -66,7 +66,7 @@ prep_upload_folder () {
 # Generate a .changes file out of a folder containing a source + binaries package
 # params: $1 = folder where the files are located
 make_changes_file () {
-    local MCF_EXTRACTED_FOLDER MCF_CHANGELOG_DATE MCF_SOURCE_PKGNAME MCF_BINARY_LIST MCF_DEBIAN_VERSION MCF_DEBIAN_VERSION_NO_EPOCH MCF_NUM_LINES_PARSECHANGE MCF_START_CHANGES_LINE MCF_MAINTAINER MCF_binary_package MCF_SHORT_DESC MCF_FILE_LIST MCF_OLD_DIR MCF_DOT_CHANGE_FNAME MCF_SRC_PACKAGE_SECTION MCF_SRC_PACKAGE_PRIORITY
+    local MCF_EXTRACTED_FOLDER MCF_CHANGELOG_DATE MCF_SOURCE_PKGNAME MCF_BINARY_LIST MCF_DEBIAN_VERSION MCF_DEBIAN_VERSION_NO_EPOCH MCF_NUM_LINES_PARSECHANGE MCF_START_CHANGES_LINE MCF_MAINTAINER MCF_binary_package MCF_SHORT_DESC MCF_FILE_LIST MCF_OLD_DIR MCF_DOT_CHANGE_FNAME MCF_SRC_PACKAGE_SECTION MCF_SRC_PACKAGE_PRIORITY MCF_ARCH
     MCF_OLD_DIR=$(pwd)
     cd ${1}
     # Extract the package to get metadata with dpkg-parsechangelog and friends
@@ -89,11 +89,20 @@ make_changes_file () {
     MCF_CHANGE_FIELD_NUM_LINES=$((${MCF_NUM_LINES_PARSECHANGE} - ${MCF_START_CHANGES_LINE} + 1))
     MCF_MAINTAINER=$(dpkg-parsechangelog -SMaintainer)
 
+    # Compute the avialable arch for the upload
+    MCF_ARCH="source"
+    if ls *_amd64.deb ; then
+        MCF_ARCH="${MCF_ARCH} amd64"
+    fi
+    if ls *_all.deb ; then
+        MCF_ARCH="${MCF_ARCH} all"
+    fi
+
     echo "Format: 1.8
 Date: ${MCF_CHANGELOG_DATE}
 Source: ${MCF_SOURCE_PKGNAME}
 Binary: ${MCF_BINARY_LIST}
-Architecture: source all
+Architecture: ${MCF_ARCH}
 Version: ${MCF_DEBIAN_VERSION}
 Distribution: jessie-newton-backports
 Urgency: medium
