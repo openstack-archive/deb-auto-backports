@@ -15,6 +15,7 @@ bb_parse_params () {
     UPLOAD=no
     SRC_DISTRO=sid
     DOWNLOAD_FROM_JESSIE_BACKPORTS="no"
+    RUN_PACKAGE_TESTS="yes"
     PARAM_ERROR="no"
     for i in $@ ; do
         case ${i} in
@@ -22,6 +23,10 @@ bb_parse_params () {
             if [ -z "${2}" ] ; then usage ; fi
             SRC_DISTRO=${2}
             shift
+            shift
+        ;;
+        "--no-run-package-tests")
+            RUN_PACKAGE_TESTS="no"
             shift
         ;;
         "--download-from-jessie-backports")
