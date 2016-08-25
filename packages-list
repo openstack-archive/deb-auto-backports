@@ -32,7 +32,7 @@ pyopenssl -d jessie-backports
 pytest -d jessie-backports
 python-amqp
 python-babel
-#python-cachecontrol
+python-cachecontrol
 python-cachetools -d jessie-backports
 python-cassandra-driver
 #python-cbor
@@ -62,7 +62,7 @@ python-lockfile
 python-mysqldb
 python-nacl
 python-networkx -d jessie-backports
-#python-packaging
+python-packaging
 python-pathlib
 python-pika -d jessie-backports
 #python-pip
