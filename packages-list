@@ -93,9 +93,9 @@ requests
 setuptools-scm
 six
 sphinx -d jessie-backports
-#sphinx-argparse
+sphinx-argparse
 #sphinx-bootstrap-theme
-#sphinx-testing
+sphinx-testing
 sqlalchemy
 #stringtemplate4
 suds
