@@ -76,7 +76,7 @@ python-pyscss -d jessie-backports
 #python-repoze.who
 #python-repoze.who-plugins
 #python-requests-kerberos
-#python-selenium
+python-selenium
 python-setuptools
 python-smmap
 #python-snappy
