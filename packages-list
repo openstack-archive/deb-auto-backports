@@ -46,8 +46,8 @@ python-dogpile.cache
 python-elasticsearch
 python-eventlet
 #python-future
-#python-git
-#python-gitdb
+python-git
+python-gitdb
 #python-googleapi
 #python-gssapi
 python-hypothesis
