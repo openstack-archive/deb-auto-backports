@@ -225,8 +225,15 @@ pgkos_build_the_bpo () {
         cd ../*bpo8+1
         BUILDCURDIR=$(pwd)
     fi
+    if [ "${RUN_PACKAGE_TESTS}" = "no" ] ; then
+        if [ -z "${DEB_BUILD_OPTIONS}" ] ; then
+            DEB_BUILD_OPTIONS="nocheck"
+        else
+            DEB_BUILD_OPTIONS="${DEB_BUILD_OPTIONS},nocheck"
+        fi
+    fi
 
-    ssh -o "StrictHostKeyChecking no" localhost "cd ${BUILDCURDIR} ; sbuild --force-orig-source"
+    ssh -o "StrictHostKeyChecking no" localhost "cd ${BUILDCURDIR} ; DEB_BUILD_OPTIONS=${DEB_BUILD_OPTIONS} sbuild --force-orig-source"
 
     # Check the output files with ls
     ls -lah ..
