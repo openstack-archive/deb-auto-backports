@@ -51,7 +51,7 @@ python-elasticsearch
 python-eventlet
 python-flake8 --no-run-package-tests
 #python-future
-#python-git
+python-git
 #python-gitdb
 #python-googleapi
 #python-gssapi
