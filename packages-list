@@ -91,7 +91,7 @@ python-urllib3
 qpid-proton -d jessie-backports
 requests
 #routes
-#setuptools-scm
+setuptools-scm
 six
 sphinx -d jessie-backports
 #sphinx-argparse
