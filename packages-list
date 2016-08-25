@@ -64,6 +64,7 @@ python-ldap3
 python-lockfile
 #python-lz4
 python-mccabe
+python-mock -d experimental
 python-mysqldb
 python-nacl
 python-networkx -d jessie-backports
