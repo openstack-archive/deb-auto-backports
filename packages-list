@@ -61,7 +61,7 @@ python-lockfile
 #python-lz4
 python-mysqldb
 python-nacl
-#python-networkx
+python-networkx -d jessie-backports
 #python-packaging
 python-pathlib
 python-pika -d jessie-backports
