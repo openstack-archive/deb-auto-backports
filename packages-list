@@ -65,7 +65,7 @@ python-nacl
 #python-packaging
 python-pathlib
 python-pika -d jessie-backports
-#python-pip
+python-pip
 python-progress
 python-py -d jessie-backports
 python-pygraphviz -d jessie-backports
