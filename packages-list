@@ -45,6 +45,7 @@ python-django -d jessie-backports
 python-dogpile.cache
 python-elasticsearch
 python-eventlet
+python-flake8
 #python-future
 #python-git
 #python-gitdb
