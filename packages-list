@@ -25,11 +25,14 @@ nose
 #pandas
 pep8
 pyasn1
+pycodestyle
+pyflakes
 pygments
 pyinotify
 pymongo -d jessie-backports
 pyopenssl -d jessie-backports
 pytest -d jessie-backports
+pytest-runner
 python-amqp
 python-babel
 #python-cachecontrol
@@ -59,6 +62,7 @@ python-keyring
 python-ldap3
 python-lockfile
 #python-lz4
+python-mccabe
 python-mysqldb
 python-nacl
 python-networkx -d jessie-backports
