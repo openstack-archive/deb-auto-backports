@@ -30,6 +30,7 @@ pyinotify
 pymongo -d jessie-backports
 pyopenssl -d jessie-backports
 pytest -d jessie-backports
+pytest-runner
 python-amqp
 python-babel
 #python-cachecontrol
