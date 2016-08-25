@@ -68,7 +68,7 @@ python-pika -d jessie-backports
 #python-pip
 python-progress
 python-py -d jessie-backports
-#python-pygraphviz
+python-pygraphviz -d jessie-backports
 #python-pysaml2
 python-pyscss -d jessie-backports
 #python-repoze.what
