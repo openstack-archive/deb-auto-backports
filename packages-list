@@ -33,7 +33,7 @@ pytest -d jessie-backports
 python-amqp
 python-babel
 #python-cachecontrol
-#python-cachetools
+python-cachetools -d jessie-backports
 python-cassandra-driver
 #python-cbor
 python-cffi -d jessie-backports
