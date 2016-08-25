@@ -29,6 +29,7 @@ pygments
 pyinotify
 pymongo -d jessie-backports
 pyopenssl -d jessie-backports
+pyparsing
 pytest -d jessie-backports
 python-amqp
 python-babel
