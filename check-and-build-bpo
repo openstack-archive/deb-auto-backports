@@ -56,25 +56,33 @@ make_fake_mirror () {
    FETCH_REPO_URL=${2}
    # Create the folder and remove the Packages.gz / Sources.gz
    DEST_DIST_DIR=${HERE}/etc/pkgos/fake-${NAME_OF_MIRROR}-mirror/dists/${NAME_OF_MIRROR}/main
-   for i in binary-all binary-amd64 source ; do
-      if ! [ -d ${DEST_DIST_DIR}/$i ] ; then
-         mkdir -p ${DEST_DIST_DIR}/$i
+   for BINARY_ARCH in binary-all binary-amd64 source ; do
+      if ! [ -d ${DEST_DIST_DIR}/${BINARY_ARCH} ] ; then
+         mkdir -p ${DEST_DIST_DIR}/${BINARY_ARCH}
       fi
-      if [ "$i" = "source" ] ; then
-          if [ "${NAME_OF_MIRROR}" = "experimental" ] ; then
-              GZFILE=Sources.xz
-          else
-              GZFILE=Sources.gz
-          fi
+      if [ "${BINARY_ARCH}" = "source" ] ; then
+         LISTFILE=Sources
       else
-          if [ "${NAME_OF_MIRROR}" = "experimental" ] ; then
-              GZFILE=Packages.xz
-          else
-              GZFILE=Packages.gz
-          fi
+         LISTFILE=Packages
       fi
-      rm -f ${DEST_DIST_DIR}/$i/$GZFILE
-      wget ${FETCH_REPO_URL}/dists/${NAME_OF_MIRROR}/main/$i/$GZFILE -O ${DEST_DIST_DIR}/$i/$GZFILE || true
+      ARCHIVE=''
+      for FILE_EXTENSION in gz bz2 xz ; do
+          LINK_TO_LISTFILE=${FETCH_REPO_URL}/dists/${NAME_OF_MIRROR}/main/${BINARY_ARCH}/${LISTFILE}.${FILE_EXTENSION}
+          HTTP_CODE=$(curl -sL -w "%{http_code}" "${LINK_TO_LISTFILE}" -o /dev/null)
+          if [ "$HTTP_CODE" = "200" ] ; then
+              if [ "${FILE_EXTENSION}" = 'xz' ] ; then
+                  echo 'madison-lite (v0.21) does not support XZ (LZMA/LZMA2 compression algorithms).'
+                  # TODO(tlbr): Provide workaround and remove it once newer version of madison-lite is out.
+              fi
+              ARCHIVE=${LISTFILE}.${FILE_EXTENSION}
+          fi
+      done
+      if ! [ -z $ARCHIVE ] ; then
+          rm -f ${DEST_DIST_DIR}/${BINARY_ARCH}/${ARCHIVE}
+          wget ${FETCH_REPO_URL}/dists/${NAME_OF_MIRROR}/main/${BINARY_ARCH}/${ARCHIVE} -O ${DEST_DIST_DIR}/${BINARY_ARCH}/${ARCHIVE}
+      else
+          echo "There is no ${LISTFILE} archive to work with."
+      fi
    done
 }
 
