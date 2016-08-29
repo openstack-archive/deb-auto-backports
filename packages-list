@@ -5,7 +5,7 @@ alabaster
 apscheduler
 bash-completion
 betamax
-#contextlib2
+contextlib2
 #dh-python
 dirtbike
 django-nose
