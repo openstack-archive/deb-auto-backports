@@ -52,7 +52,7 @@ python-eventlet
 python-flake8 --no-run-package-tests
 #python-future
 #python-git
-#python-gitdb
+python-gitdb
 #python-googleapi
 #python-gssapi
 python-hypothesis
