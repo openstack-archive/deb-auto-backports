@@ -1,0 +1,6 @@
+# This is a list of package that we want to be removed
+# from the jessie-newton-backports repository. The
+# POST job will iterate through the packages listed here.
+# It should be ok if a package is listed here, but doesn't
+# exist in the archive.
+dpkg
