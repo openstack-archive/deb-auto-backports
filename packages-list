@@ -39,7 +39,7 @@ python-babel
 python-cachecontrol
 python-cachetools -d jessie-backports
 python-cassandra-driver
-#python-cbor
+python-cbor
 python-cffi -d jessie-backports
 python-cryptography -d jessie-backports
 python-cryptography-vectors -d jessie-backports
