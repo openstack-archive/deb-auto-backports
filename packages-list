@@ -76,13 +76,12 @@ python-pip
 python-progress
 python-py -d jessie-backports
 python-pygraphviz -d jessie-backports
-#python-pysaml2
 python-pyscss -d jessie-backports
 #python-repoze.what
 #python-repoze.what-plugins
 #python-repoze.who
 #python-repoze.who-plugins
-#python-requests-kerberos
+python-requestsexceptions
 python-selenium
 python-setuptools
 python-smmap
