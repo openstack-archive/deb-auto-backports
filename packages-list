@@ -18,7 +18,7 @@ faker
 jinja2
 jquery
 kazoo
-#kombu
+kombu -d jessie-backports
 #lz4
 #nodeenv
 nose
