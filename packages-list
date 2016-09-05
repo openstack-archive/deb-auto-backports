@@ -80,7 +80,7 @@ python-pygraphviz -d jessie-backports
 python-pyscss -d jessie-backports
 #python-repoze.what
 #python-repoze.what-plugins
-#python-repoze.who
+python-repoze.who
 #python-repoze.who-plugins
 #python-requests-kerberos
 python-selenium
