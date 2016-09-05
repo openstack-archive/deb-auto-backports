@@ -23,6 +23,7 @@ kombu -d jessie-backports
 #nodeenv
 nose
 #pandas
+paramiko
 pep8
 pyasn1
 pycodestyle
