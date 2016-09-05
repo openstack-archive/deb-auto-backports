@@ -54,7 +54,7 @@ python-flake8 --no-run-package-tests
 python-git
 python-gitdb
 #python-googleapi
-#python-gssapi
+python-gssapi
 python-hypothesis
 python-idna
 python-imagesize
