@@ -57,6 +57,7 @@ python-gitdb
 #python-googleapi
 python-gssapi
 python-hypothesis
+python-ibm-db-sa
 python-idna
 python-imagesize
 python-ipaddress
