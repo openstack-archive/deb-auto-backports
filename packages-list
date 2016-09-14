@@ -93,18 +93,18 @@ python-subprocess32
 python-tzlocal
 python-unicodecsv
 python-uritemplate
-python-urllib3
+#python-urllib3 <--- Already backported, moving target that we don't want to always work
 python-virtualenv
 python-webob -d jessie-backports
 qpid-proton -d jessie-backports
-requests
+#requests <--- Already backported, moving target that we don't want to always work
 routes
 setuptools-scm
 six
 sphinx -d jessie-backports
 sphinx-argparse
 #sphinx-bootstrap-theme
-#sphinx-testing
+sphinx-testing
 sqlalchemy
 #stringtemplate4
 suds
