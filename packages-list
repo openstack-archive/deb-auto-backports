@@ -54,7 +54,7 @@ python-flake8 --no-run-package-tests
 #python-future
 python-git
 python-gitdb
-#python-googleapi
+python-googleapi
 python-gssapi
 python-hypothesis
 python-ibm-db-sa
