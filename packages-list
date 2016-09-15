@@ -48,7 +48,7 @@ python-cryptography -d jessie-backports
 python-cryptography-vectors -d jessie-backports
 python-dateutil
 python-django -d jessie-backports
-#python-docker
+python-docker
 python-dogpile.cache
 python-elasticsearch
 python-eventlet
