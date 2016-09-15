@@ -91,7 +91,7 @@ python-restructuredtext-lint
 python-selenium
 python-setuptools
 python-smmap
-#python-snappy
+python-snappy
 python-subprocess32
 python-tzlocal
 python-unicodecsv
