@@ -71,6 +71,7 @@ python-mccabe
 python-mock -d experimental
 python-mysqldb
 python-nacl
+python-netaddr
 python-networkx -d jessie-backports
 python-packaging
 python-pathlib
