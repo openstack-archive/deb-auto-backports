@@ -21,7 +21,7 @@ jquery
 kazoo
 kombu -d jessie-backports
 localehelper
-#lz4
+lz4
 #nodeenv
 nose
 #pandas
