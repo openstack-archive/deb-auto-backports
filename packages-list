@@ -13,6 +13,7 @@ django-sekizai
 dnspython
 dpkg
 faker
+freezegun
 #git-buildpackage <- Already in the archive, creates errors in reprepro
 #gunicorn <- Already in the archive, creates errors in reprepro
 jinja2
