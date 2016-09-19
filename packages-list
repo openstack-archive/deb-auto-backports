@@ -24,6 +24,7 @@ localehelper
 lz4
 #nodeenv
 nose
+osgi-compendium
 #pandas
 paramiko
 pep8
