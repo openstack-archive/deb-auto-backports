@@ -26,6 +26,7 @@ lz4
 #nodeenv
 nose
 osgi-annotation
+osgi-compendium
 osgi-core
 #pandas
 paramiko
