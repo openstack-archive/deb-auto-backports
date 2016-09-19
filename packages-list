@@ -1,7 +1,7 @@
 # Each line is in fact a command line for the ./bb utility
 # which will do the actual rebuild of the package
 alabaster
-#antlr3
+antlr3
 apscheduler
 bash-completion
 betamax
