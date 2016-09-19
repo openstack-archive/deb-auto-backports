@@ -15,6 +15,7 @@ dpkg
 faker
 freezegun
 #git-buildpackage <- Already in the archive, creates errors in reprepro
+gradle --download-from-jessie-backports
 #gunicorn <- Already in the archive, creates errors in reprepro
 jinja2
 jquery
