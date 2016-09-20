@@ -14,6 +14,8 @@ dnspython
 dpkg
 faker
 freezegun
+fonts-font-awesome
+fonts-materialdesignicons-webfont
 #git-buildpackage <- Already in the archive, creates errors in reprepro
 gradle --download-from-jessie-backports
 #gunicorn <- Already in the archive, creates errors in reprepro
@@ -21,6 +23,26 @@ jinja2
 jquery
 kazoo
 kombu -d jessie-backports
+libjs-angular-gettext
+libjs-angularjs
+libjs-angularjs-smart-table
+libjs-bootswatch
+libjs-d3
+libjs-jquery
+libjs-jquery-cookie
+libjs-jquery-metadata
+libjs-jquery-tablesorter
+libjs-jquery-ui
+libjs-jquery.quicksearch
+libjs-jsencrypt
+libjs-lrdragndrop
+libjs-magic-search
+libjs-rickshaw
+libjs-spin.js
+libjs-term.js
+libjs-twitter-bootstrap
+libjs-twitter-bootstrap-datepicker
+libjs-underscore
 localehelper
 lz4
 #nodeenv
