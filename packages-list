@@ -102,6 +102,7 @@ python-uritemplate
 #python-urllib3 <--- Already backported, moving target that we don't want to always work
 python-virtualenv
 python-webob -d jessie-backports
+python-xmltodict
 qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
 routes
