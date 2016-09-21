@@ -131,14 +131,17 @@ jquery
 jquery-goodies
 jqueryui
 libjs-angular-gettext
+libjs-angular-schema-form
 libjs-angularjs-smart-table
 libjs-bootswatch
 libjs-jquery.quicksearch
 libjs-jsencrypt
 libjs-lrdragndrop
 libjs-magic-search
+libjs-objectpath
 libjs-spin.js
 libjs-term.js
+libjs-tv4
 libjs-twitter-bootstrap-datepicker
 rickshaw
 twitter-bootstrap
