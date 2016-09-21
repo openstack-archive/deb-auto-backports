@@ -102,6 +102,7 @@ python-uritemplate
 #python-urllib3 <--- Already backported, moving target that we don't want to always work
 python-virtualenv
 python-webob -d jessie-backports
+python-xmltodict
 qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
 routes
@@ -111,7 +112,7 @@ sphinx -d jessie-backports
 sphinx-argparse
 sphinx-bootstrap-theme
 sphinx-testing
-sqlalchemy
+#sqlalchemy <--- Disable it until the new version 1.0.15+ds1 has finished propagating on FTPs
 #stringtemplate4
 suds
 turbogears2
