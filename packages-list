@@ -37,7 +37,7 @@ pygments
 pyinotify
 pymongo -d jessie-backports
 pyopenssl -d jessie-backports
-pyparsing
+#pyparsing <--- Temporarily disabled
 pytest -d jessie-backports
 pytest-runner
 python-amqp
@@ -57,7 +57,7 @@ python-elasticsearch
 python-eventlet
 python-flake8 --no-run-package-tests
 python-future
-python-git
+#python-git <--- Temporarily disabled
 python-gitdb
 python-googleapi
 python-gssapi
@@ -100,7 +100,7 @@ python-tzlocal
 python-unicodecsv
 python-uritemplate
 #python-urllib3 <--- Already backported, moving target that we don't want to always work
-python-virtualenv
+#python-virtualenv <--- Temporarily disabled
 python-webob -d jessie-backports
 python-xmltodict
 qpid-proton -d jessie-backports
@@ -123,6 +123,7 @@ webkit2gtk --download-from-jessie-backports
 zzzeeksphinx
 #
 # Horizon fonts and JS dependencies:
+#
 angular.js
 d3
 fonts-font-awesome
