@@ -27,7 +27,7 @@ lz4
 nose
 osgi-annotation
 osgi-core
-#pandas
+pandas
 paramiko
 pep8
 pyasn1
