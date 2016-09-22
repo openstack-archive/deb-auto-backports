@@ -123,6 +123,7 @@ webkit2gtk --download-from-jessie-backports
 zzzeeksphinx
 #
 # Horizon fonts and JS dependencies:
+#
 angular.js
 d3
 fonts-font-awesome
