@@ -21,6 +21,7 @@ jinja2
 jquery
 kazoo
 kombu -d jessie-backports
+liberasurecode-dev
 localehelper
 lz4
 #nodeenv
