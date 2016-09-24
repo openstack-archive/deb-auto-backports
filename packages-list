@@ -7,6 +7,7 @@ bash-completion
 betamax
 contextlib2
 debhelper --download-from-jessie-backports
+dh-autoreconf --download-from-jessie-backports
 #dh-python
 dirtbike
 django-nose
