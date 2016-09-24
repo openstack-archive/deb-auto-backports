@@ -23,6 +23,7 @@ jquery
 kazoo
 kombu -d jessie-backports
 liberasurecode
+libgit2
 localehelper
 lz4
 #nodeenv
