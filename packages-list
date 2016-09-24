@@ -23,6 +23,7 @@
 #jquery <--- Temporarily disabled
 #kazoo
 #kombu -d jessie-backports
+libgit2 --no-run-package-tests
 #localehelper
 #lz4
 #nodeenv
