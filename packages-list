@@ -81,6 +81,7 @@ python-nacl
 python-netaddr
 python-networkx -d jessie-backports
 python-packaging
+python-pager
 python-pathlib
 python-pika -d jessie-backports
 python-pip
@@ -99,6 +100,7 @@ python-setuptools
 python-smmap
 python-snappy
 python-subprocess32
+python-toml
 python-tzlocal
 python-unicodecsv
 python-uritemplate
