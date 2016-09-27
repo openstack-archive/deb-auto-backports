@@ -136,13 +136,16 @@ fonts-materialdesignicons-webfont
 jquery
 jquery-goodies
 jqueryui
+libjs-angular-file-upload
 libjs-angular-gettext
 libjs-angularjs-smart-table
+libjs-angular-schema-form
 libjs-bootswatch
 libjs-jquery.quicksearch
 libjs-jsencrypt
 libjs-lrdragndrop
 libjs-magic-search
+libjs-objectpath
 libjs-spin.js
 libjs-term.js
 libjs-tv4
