@@ -28,6 +28,7 @@ localehelper
 lz4
 #nodeenv
 nose
+openvswitch
 osgi-annotation
 osgi-core
 pandas
