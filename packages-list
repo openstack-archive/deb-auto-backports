@@ -53,6 +53,7 @@ python-cbor
 python-cffi -d jessie-backports
 python-cryptography -d jessie-backports
 python-cryptography-vectors -d jessie-backports
+python-daemon
 python-dateutil
 #python-django -d jessie-backports
 python-docker
@@ -60,6 +61,7 @@ python-dogpile.cache
 python-elasticsearch
 python-flake8 --no-run-package-tests
 python-future
+python-gear
 #python-git <--- Temporarily disabled
 python-gitdb
 python-googleapi
@@ -99,6 +101,7 @@ python-selenium
 python-setuptools
 python-smmap
 python-snappy
+python-statsd
 python-subprocess32
 python-toml
 python-tzlocal
