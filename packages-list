@@ -53,6 +53,7 @@ python-cbor
 python-cffi -d jessie-backports
 python-cryptography -d jessie-backports
 python-cryptography-vectors -d jessie-backports
+python-daemon
 python-dateutil
 #python-django -d jessie-backports
 python-docker
@@ -99,6 +100,7 @@ python-selenium
 python-setuptools
 python-smmap
 python-snappy
+python-statsd
 python-subprocess32
 python-toml
 python-tzlocal
@@ -117,7 +119,7 @@ sphinx -d jessie-backports
 sphinx-argparse
 sphinx-bootstrap-theme
 sphinx-testing
-#sqlalchemy <--- Disable it until the new version 1.0.15+ds1 has finished propagating on FTPs
+sqlalchemy
 #stringtemplate4
 suds
 turbogears2
