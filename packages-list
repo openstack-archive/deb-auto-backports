@@ -122,6 +122,7 @@ sphinx-testing
 # sqlalchemy <--- Temporarily disabled
 #stringtemplate4
 suds
+tar --no-run-package-tests # <--- Unit tests FTBFS with "no space left on device"
 turbogears2
 twisted
 unittest2
