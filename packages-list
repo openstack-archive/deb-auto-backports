@@ -47,12 +47,12 @@ python-amqp
 python-babel
 python-cachecontrol
 python-cachetools -d jessie-backports
-python-cassandra-driver
+# python-cassandra-driver <--- Temporarily disabled
 python-cbor
 python-cffi -d jessie-backports
 python-cryptography -d jessie-backports
 python-cryptography-vectors -d jessie-backports
-python-daemon
+# python-daemon <--- Temporarily disabled
 python-dateutil
 #python-django -d jessie-backports
 python-docker
@@ -99,7 +99,7 @@ python-selenium
 python-setuptools
 python-smmap
 python-snappy
-python-statsd
+# python-statsd <--- Temporarily disabled
 python-subprocess32
 python-toml
 python-tzlocal
@@ -109,6 +109,7 @@ python-uritemplate
 #python-virtualenv <--- Temporarily disabled
 python-webob -d jessie-backports
 python-xmltodict
+q-text-as-data
 qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
 routes
@@ -118,7 +119,7 @@ sphinx -d jessie-backports
 sphinx-argparse
 sphinx-bootstrap-theme
 sphinx-testing
-sqlalchemy
+# sqlalchemy <--- Temporarily disabled
 #stringtemplate4
 suds
 turbogears2
@@ -152,4 +153,4 @@ libjs-term.js
 libjs-tv4
 libjs-twitter-bootstrap-datepicker
 rickshaw
-twitter-bootstrap
+# twitter-bootstrap <--- Temporarily disabled
