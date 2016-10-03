@@ -109,6 +109,7 @@ python-uritemplate
 #python-virtualenv <--- Temporarily disabled
 python-webob -d jessie-backports
 python-xmltodict
+q-text-as-data
 qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
 routes
