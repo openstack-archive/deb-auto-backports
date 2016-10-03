@@ -122,6 +122,7 @@ sphinx-testing
 # sqlalchemy <--- Temporarily disabled
 #stringtemplate4
 suds
+tar
 turbogears2
 twisted
 unittest2
