@@ -30,11 +30,11 @@ nose
 openvswitch
 osgi-annotation
 osgi-core
-pandas
+#pandas
 paramiko
 pep8
 pyasn1
-pycodestyle
+#pycodestyle
 pyflakes
 pygments
 pyinotify
