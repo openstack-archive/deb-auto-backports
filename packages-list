@@ -30,18 +30,18 @@ nose
 openvswitch
 osgi-annotation
 osgi-core
-pandas
+#pandas <--- Temporarily disabled
 paramiko
 pep8
 pyasn1
-pycodestyle
+#pycodestyle <--- Temporarily disabled
 pyflakes
 pygments
 pyinotify
 pymongo -d jessie-backports
 pyopenssl -d jessie-backports
 #pyparsing <--- Temporarily disabled
-pytest -d jessie-backports
+#pytest -d jessie-backports <--- Temporarily disabled
 pytest-runner
 python-amqp
 python-babel
@@ -55,13 +55,13 @@ python-cryptography-vectors -d jessie-backports
 python-daemon
 python-dateutil
 #python-django -d jessie-backports
-python-docker
+#python-docker <--- Temporarily disabled
 python-dogpile.cache
 python-elasticsearch
-python-flake8 --no-run-package-tests
+#python-flake8 --no-run-package-tests <--- Temporarily disabled
 python-future
 #python-git <--- Temporarily disabled
-python-gitdb
+#python-gitdb <--- Temporarily disabled
 python-googleapi
 python-gssapi
 python-hypothesis
@@ -113,7 +113,7 @@ q-text-as-data
 qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
 routes
-setuptools-scm
+#setuptools-scm <--- Temporarily disabled
 six
 sphinx -d jessie-backports
 sphinx-argparse
@@ -124,7 +124,7 @@ sphinx-testing
 suds
 tar --no-run-package-tests # <--- Unit tests FTBFS with "no space left on device"
 turbogears2
-twisted
+#twisted <--- Temporarily disabled
 unittest2
 voluptuous
 webkit2gtk --download-from-jessie-backports
@@ -138,7 +138,7 @@ fonts-font-awesome
 fonts-materialdesignicons-webfont
 jquery
 jquery-goodies
-jqueryui
+#jqueryui <--- Temporarily disabled
 libjs-angular-file-upload
 libjs-angular-gettext
 libjs-angularjs-smart-table
