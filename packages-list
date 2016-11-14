@@ -30,18 +30,18 @@ nose
 openvswitch
 osgi-annotation
 osgi-core
-pandas
+#pandas <--- Temporarily disabled
 paramiko
 pep8
 pyasn1
-pycodestyle
+#pycodestyle <--- Temporarily disabled
 pyflakes
 pygments
 pyinotify
 pymongo -d jessie-backports
 pyopenssl -d jessie-backports
 #pyparsing <--- Temporarily disabled
-pytest -d jessie-backports
+#pytest -d jessie-backports <--- Temporarily disabled
 pytest-runner
 python-amqp
 python-babel
@@ -55,10 +55,10 @@ python-cryptography-vectors -d jessie-backports
 python-daemon
 python-dateutil
 #python-django -d jessie-backports
-python-docker
+#python-docker <--- Temporarily disabled
 python-dogpile.cache
 python-elasticsearch
-python-flake8 --no-run-package-tests
+#python-flake8 --no-run-package-tests <--- Temporarily disabled
 python-future
 #python-git <--- Temporarily disabled
 python-gitdb
