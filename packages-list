@@ -30,11 +30,11 @@ nose
 openvswitch
 osgi-annotation
 osgi-core
-#pandas <--- Temporarily disabled
+pandas
 paramiko
 pep8
 pyasn1
-#pycodestyle <--- Temporarily disabled
+pycodestyle
 pyflakes
 pygments
 pyinotify
@@ -113,7 +113,7 @@ q-text-as-data
 qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
 routes
-#setuptools-scm <--- Temporarily disabled
+setuptools-scm
 six
 sphinx -d jessie-backports
 sphinx-argparse
@@ -138,7 +138,7 @@ fonts-font-awesome
 fonts-materialdesignicons-webfont
 jquery
 jquery-goodies
-#jqueryui <--- Temporarily disabled
+jqueryui
 libjs-angular-file-upload
 libjs-angular-gettext
 libjs-angularjs-smart-table
