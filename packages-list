@@ -20,7 +20,7 @@ freezegun
 gradle --download-from-jessie-backports
 #gunicorn <- Already in the archive, creates errors in reprepro
 jinja2
-jquery
+#jquery <--- Temporarily disabled
 kazoo
 kombu -d jessie-backports
 localehelper
@@ -136,7 +136,7 @@ angular.js
 d3
 fonts-font-awesome
 fonts-materialdesignicons-webfont
-jquery
+#jquery <--- Temporarily disabled
 jquery-goodies
 #jqueryui <--- Temporarily disabled
 libjs-angular-file-upload
