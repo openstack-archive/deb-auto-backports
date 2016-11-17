@@ -1,157 +1,157 @@
 # Each line is in fact a command line for the ./bb utility
 # which will do the actual rebuild of the package
-alabaster
+#alabaster
 #antlr3
-apscheduler
-bash-completion
-betamax
-contextlib2
-debhelper --download-from-jessie-backports
-dh-autoreconf --download-from-jessie-backports
+#apscheduler
+#bash-completion
+#betamax
+#contextlib2
+debhelper -d jessie-backports
+dh-autoreconf -d jessie-backports
 #dh-python
-dirtbike
-django-nose
-django-sekizai
-dnspython
-dpkg
-faker
-freezegun
+#dirtbike
+#django-nose
+#django-sekizai
+#dnspython
+#dpkg
+#faker
+#freezegun
 #git-buildpackage <- Already in the archive, creates errors in reprepro
-gradle --download-from-jessie-backports
+#gradle --download-from-jessie-backports
 #gunicorn <- Already in the archive, creates errors in reprepro
-jinja2
+#jinja2
 #jquery <--- Temporarily disabled
-kazoo
-kombu -d jessie-backports
-localehelper
-lz4
+#kazoo
+#kombu -d jessie-backports
+#localehelper
+#lz4
 #nodeenv
-nose
-openvswitch
-osgi-annotation
-osgi-core
+#nose
+#openvswitch
+#osgi-annotation
+#osgi-core
 #pandas <--- Temporarily disabled
-paramiko
-pep8
-pyasn1
+#paramiko
+#pep8
+#pyasn1
 #pycodestyle <--- Temporarily disabled
-pyflakes
-pygments
-pyinotify
-pymongo -d jessie-backports
-pyopenssl -d jessie-backports
+#pyflakes
+#pygments
+#pyinotify
+#pymongo -d jessie-backports
+#pyopenssl -d jessie-backports
 #pyparsing <--- Temporarily disabled
 #pytest -d jessie-backports <--- Temporarily disabled
-pytest-runner
-python-amqp
-python-babel
-python-cachecontrol
-python-cachetools -d jessie-backports
-# python-cassandra-driver <--- Temporarily disabled
-python-cbor
-python-cffi -d jessie-backports
-python-cryptography -d jessie-backports
-python-cryptography-vectors -d jessie-backports
-python-daemon
-python-dateutil
+#pytest-runner
+#python-amqp
+#python-babel
+#python-cachecontrol
+#python-cachetools -d jessie-backports
+#python-cassandra-driver <--- Temporarily disabled
+#python-cbor
+#python-cffi -d jessie-backports
+#python-cryptography -d jessie-backports
+#python-cryptography-vectors -d jessie-backports
+#python-daemon
+#python-dateutil
 #python-django -d jessie-backports
 #python-docker <--- Temporarily disabled
-python-dogpile.cache
-python-elasticsearch
+#python-dogpile.cache
+#python-elasticsearch
 #python-flake8 --no-run-package-tests <--- Temporarily disabled
-python-future
+#python-future
 #python-git <--- Temporarily disabled
 #python-gitdb <--- Temporarily disabled
-python-googleapi
-python-gssapi
-python-hypothesis
-python-ibm-db-sa
-python-idna
-python-imagesize
-python-ipaddress
-python-iso8601
-python-keyring
-python-ldap3
-python-lockfile
-python-lz4
-python-mccabe
-python-mock -d experimental
-python-mysqldb
-python-nacl
-python-netaddr
-python-networkx -d jessie-backports
-python-packaging
-python-pager
-python-pathlib
-python-pika -d jessie-backports
-python-pip
-python-progress
-python-py -d jessie-backports
-python-pygraphviz -d jessie-backports
+#python-googleapi
+#python-gssapi
+#python-hypothesis
+#python-ibm-db-sa
+#python-idna
+#python-imagesize
+#python-ipaddress
+#python-iso8601
+#python-keyring
+#python-ldap3
+#python-lockfile
+#python-lz4
+#python-mccabe
+#python-mock -d experimental
+#python-mysqldb
+#python-nacl
+#python-netaddr
+#python-networkx -d jessie-backports
+#python-packaging
+#python-pager
+#python-pathlib
+#python-pika -d jessie-backports
+#python-pip
+#python-progress
+#python-py -d jessie-backports
+#python-pygraphviz -d jessie-backports
 #python-pysaml2
-python-pyscss -d jessie-backports
+#python-pyscss -d jessie-backports
 #python-repoze.what
 #python-repoze.what-plugins
-python-repoze.who
+#python-repoze.who
 #python-repoze.who-plugins
-python-restructuredtext-lint
-python-selenium
-python-setuptools
-python-smmap
-python-snappy
-python-statsd
-python-subprocess32
-python-toml
-python-tzlocal
-python-unicodecsv
-python-uritemplate
+#python-restructuredtext-lint
+#python-selenium
+#python-setuptools
+#python-smmap
+#python-snappy
+#python-statsd
+#python-subprocess32
+#python-toml
+#python-tzlocal
+#python-unicodecsv
+#python-uritemplate
 #python-urllib3 <--- Already backported, moving target that we don't want to always work
 #python-virtualenv <--- Temporarily disabled
-python-webob -d jessie-backports
-python-xmltodict
-q-text-as-data
-qpid-proton -d jessie-backports
+#python-webob -d jessie-backports
+#python-xmltodict
+#q-text-as-data
+#qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
-routes
+#routes
 #setuptools-scm <--- Temporarily disabled
-six
-sphinx -d jessie-backports
-sphinx-argparse
-sphinx-bootstrap-theme
-sphinx-testing
-# sqlalchemy <--- Temporarily disabled
+#six
+#sphinx -d jessie-backports
+#sphinx-argparse
+#sphinx-bootstrap-theme
+#sphinx-testing
+#sqlalchemy <--- Temporarily disabled
 #stringtemplate4
-suds
-tar --no-run-package-tests # <--- Unit tests FTBFS with "no space left on device"
-turbogears2
+#suds
+#tar --no-run-package-tests # <--- Unit tests FTBFS with "no space left on device"
+#turbogears2
 #twisted <--- Temporarily disabled
-unittest2
-voluptuous
-webkit2gtk --download-from-jessie-backports
-zzzeeksphinx
+#unittest2
+#voluptuous
+#webkit2gtk --download-from-jessie-backports
+#zzzeeksphinx
 #
 # Horizon fonts and JS dependencies:
 #
-angular.js
-d3
-fonts-font-awesome
-fonts-materialdesignicons-webfont
+#angular.js
+#d3
+#fonts-font-awesome
+#fonts-materialdesignicons-webfont
 #jquery <--- Temporarily disabled
-jquery-goodies
+#jquery-goodies
 #jqueryui <--- Temporarily disabled
-libjs-angular-file-upload
-libjs-angular-gettext
-libjs-angularjs-smart-table
-libjs-angular-schema-form
-libjs-bootswatch
-libjs-jquery.quicksearch
-libjs-jsencrypt
-libjs-lrdragndrop
-libjs-magic-search
-libjs-objectpath
-libjs-spin.js
-libjs-term.js
-libjs-tv4
-libjs-twitter-bootstrap-datepicker
-rickshaw
-# twitter-bootstrap <--- Temporarily disabled
+#libjs-angular-file-upload
+#libjs-angular-gettext
+#libjs-angularjs-smart-table
+#libjs-angular-schema-form
+#libjs-bootswatch
+#libjs-jquery.quicksearch
+#libjs-jsencrypt
+#libjs-lrdragndrop
+#libjs-magic-search
+#libjs-objectpath
+#libjs-spin.js
+#libjs-term.js
+#libjs-tv4
+#libjs-twitter-bootstrap-datepicker
+#rickshaw
+#twitter-bootstrap <--- Temporarily disabled
