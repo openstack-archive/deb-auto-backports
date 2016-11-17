@@ -30,7 +30,7 @@ dh-autoreconf -d jessie-backports
 #openvswitch
 #osgi-annotation
 #osgi-core
-#pandas <--- Temporarily disabled
+pandas
 #paramiko
 #pep8
 #pyasn1
