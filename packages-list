@@ -57,7 +57,6 @@ python-daemon
 python-dateutil
 #python-django -d jessie-backports
 #python-docker <--- Temporarily disabled
-#python-dogpile.cache
 python-elasticsearch
 python-flake8 --no-run-package-tests
 python-future
