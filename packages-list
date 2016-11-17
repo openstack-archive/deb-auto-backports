@@ -6,8 +6,8 @@
 #bash-completion
 #betamax
 #contextlib2
-debhelper -d jessie-backports
-dh-autoreconf -d jessie-backports
+#debhelper -d jessie-backports
+#dh-autoreconf -d jessie-backports
 #dh-python
 #dirtbike
 #django-nose
@@ -122,7 +122,7 @@ dh-autoreconf -d jessie-backports
 #sqlalchemy <--- Temporarily disabled
 #stringtemplate4
 #suds
-#tar --no-run-package-tests # <--- Unit tests FTBFS with "no space left on device"
+tar --no-run-package-tests # <--- Unit tests FTBFS with "no space left on device"
 #turbogears2
 #twisted <--- Temporarily disabled
 #unittest2
