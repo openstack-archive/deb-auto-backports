@@ -6,8 +6,8 @@
 #bash-completion
 #betamax
 #contextlib2
-debhelper -d jessie-backports
-dh-autoreconf -d jessie-backports
+#debhelper -d jessie-backports
+#dh-autoreconf -d jessie-backports
 #dh-python
 #dirtbike
 #django-nose
