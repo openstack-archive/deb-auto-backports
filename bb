@@ -233,7 +233,7 @@ pgkos_build_the_bpo () {
         fi
     fi
 
-    ssh -o "StrictHostKeyChecking no" localhost "cd ${BUILDCURDIR} ; DEB_BUILD_OPTIONS=${DEB_BUILD_OPTIONS} sbuild --force-orig-source"
+    ssh -o "StrictHostKeyChecking no" localhost "cd ${BUILDCURDIR} ; DEB_BUILD_OPTIONS=${DEB_BUILD_OPTIONS} sbuild --force-orig-source --debbuildopts=--buildinfo-option=-O"
 
     # Check the output files with ls
     ls -lah ..
