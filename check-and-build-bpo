@@ -93,8 +93,6 @@ make_fake_mirror () {
 
 # param: $1 = sid or experimental
 decide_to_build_or_not () {
-    echo -n "" >rebuild-list
-    return 0
     set +x
     # Strip commented out and empty lines, and iterate through them
     TMPFILE=$(mktemp -t stripped-list.XXXXXX)
@@ -176,7 +174,6 @@ set -x
 rebuild_all_bpo
 
 TARGET_FTP_FOLDER=${HERE}/uploads/${LAST_GIT_COMMIT}
-mkdir -p "$TARGET_FTP_FOLDER"
 set +x
 echo "############################"
 echo "### Done! List of files: ###"
