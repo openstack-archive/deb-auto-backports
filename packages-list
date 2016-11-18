@@ -114,7 +114,7 @@ q-text-as-data
 qpid-proton -d jessie-backports
 #requests <--- Already backported, moving target that we don't want to always work
 routes
-#setuptools-scm <--- Temporarily disabled
+setuptools-scm
 six
 sphinx -d jessie-backports
 sphinx-argparse
