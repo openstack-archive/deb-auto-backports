@@ -26,6 +26,7 @@ kombu -d jessie-backports
 libgit2 --no-run-package-tests
 localehelper
 lz4
+mysql-defaults
 #nodeenv
 nose
 openvswitch
