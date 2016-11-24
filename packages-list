@@ -26,6 +26,7 @@ kombu -d jessie-backports
 libgit2 --no-run-package-tests
 localehelper
 lz4
+mysql-defaults
 #nodeenv
 nose
 openvswitch
@@ -84,7 +85,7 @@ python-packaging
 python-pager
 python-pathlib
 python-pika -d jessie-backports
-python-pip
+#python-pip
 python-progress
 python-py -d jessie-backports
 python-pygraphviz -d jessie-backports
