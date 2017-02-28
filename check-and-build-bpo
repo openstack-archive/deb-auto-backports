@@ -103,7 +103,7 @@ decide_to_build_or_not () {
             echo "===> Checking status of ${PKG_NAME}:"
             JESSIE_BPO_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
             echo "Jessie BPO version: ${JESSIE_BPO_VERSION}"
-            OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
+            OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-ocata-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
             if [ -z "${OUR_VERSION}" ] ; then
                 echo "Our version: missing package"
                 echo "Decision: download"
@@ -121,7 +121,7 @@ decide_to_build_or_not () {
             echo "===> Checking status of ${PKG_NAME}:"
             DEBREPO_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-${SRC_DISTRO}-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
             echo "${SRC_DISTRO} version: ${DEBREPO_VERSION}"
-            OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-newton-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
+            OUR_VERSION=$(madison-lite -a source --mirror ${HERE}/etc/pkgos/fake-jessie-ocata-backports-mirror ${PKG_NAME} | awk '{print $3}' | tail -n 1)
             if [ -z "${OUR_VERSION}" ] ; then
                 echo "Our version: missing package"
                 echo "Decision: rebuild"
@@ -165,7 +165,7 @@ rebuild_all_bpo () {
 cleanup_data
 #add_bpo_repo_to_sbuild
 make_ssh_keys
-make_fake_mirror jessie-newton-backports http://${NODEPOOL_MIRROR_HOST}/debian-openstack
+make_fake_mirror jessie-ocata-backports http://${NODEPOOL_MIRROR_HOST}/debian-openstack
 make_fake_mirror jessie-backports http://httpredir.debian.org/debian
 make_fake_mirror sid http://httpredir.debian.org/debian
 make_fake_mirror experimental http://httpredir.debian.org/debian

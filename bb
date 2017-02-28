@@ -106,10 +106,10 @@ Source: ${MCF_SOURCE_PKGNAME}
 Binary: ${MCF_BINARY_LIST}
 Architecture: ${MCF_ARCH}
 Version: ${MCF_DEBIAN_VERSION}
-Distribution: jessie-newton-backports
+Distribution: jessie-ocata-backports
 Urgency: medium
 Maintainer: ${MCF_MAINTAINER}
-Changed-By: Thomas Goirand <zigo@debian.org>
+Changed-By: PKG OpenStack <openstack-devel@lists.alioth.debian.org>
 Description:" > ../${MCF_DOT_CHANGE_FNAME}
     # Get all binary package descriptions
     for MCF_binary_package in ${MCF_BINARY_LIST} ; do
